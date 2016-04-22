@@ -771,8 +771,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../Source \
-                         ../JuceLibraryCode
+INPUT                  = ../Source
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -812,51 +811,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = ../JuceLibraryCode/juce_graphics/image_formats \
-                         ../JuceLibraryCode/juce_core/zip/zlib \
-                         ../JuceLibraryCode/juce_audio_formats/codecs/flac \
-                         ../JuceLibraryCode/juce_audio_formats/codecs/oggvorbis \
-                         ../JuceLibraryCode/juce_audio_basics/juce_audio_basics.h \
-                         ../JuceLibraryCode/juce_audio_basics/juce_audio_basics.cpp \
-                         ../JuceLibraryCode/juce_audio_devices/juce_audio_devices.h \
-                         ../JuceLibraryCode/juce_audio_devices/juce_audio_devices.cpp \
-                         ../JuceLibraryCode/juce_audio_devices/native \
-                         ../JuceLibraryCode/juce_audio_formats/juce_audio_formats.h \
-                         ../JuceLibraryCode/juce_audio_formats/juce_audio_formats.cpp \
-                         ../JuceLibraryCode/juce_audio_plugin_client/juce_audio_plugin_client.h \
-                         ../JuceLibraryCode/juce_audio_plugin_client/AU/CoreAudioUtilityClasses \
-                         ../JuceLibraryCode/juce_audio_processors/juce_audio_processors.h \
-                         ../JuceLibraryCode/juce_audio_processors/juce_audio_processors.cpp \
-                         ../JuceLibraryCode/juce_audio_utils/juce_audio_utils.h \
-                         ../JuceLibraryCode/juce_audio_utils/juce_audio_utils.cpp \
-                         ../JuceLibraryCode/juce_browser_plugin_client/juce_browser_plugin.h \
-                         ../JuceLibraryCode/juce_browser_plugin_client/juce_browser_plugin.cpp \
-                         ../JuceLibraryCode/juce_core/juce_core.h \
-                         ../JuceLibraryCode/juce_core/juce_core.cpp \
-                         ../JuceLibraryCode/juce_core/native \
-                         ../JuceLibraryCode/juce_cryptography/juce_cryptography.h \
-                         ../JuceLibraryCode/juce_cryptography/juce_cryptography.cpp \
-                         ../JuceLibraryCode/juce_data_structures/juce_data_structures.h \
-                         ../JuceLibraryCode/juce_data_structures/juce_data_structures.cpp \
-                         ../JuceLibraryCode/juce_events/juce_events.h \
-                         ../JuceLibraryCode/juce_events/juce_events.cpp \
-                         ../JuceLibraryCode/juce_events/native \
-                         ../JuceLibraryCode/juce_graphics/juce_graphics.h \
-                         ../JuceLibraryCode/juce_graphics/juce_graphics.cpp \
-                         ../JuceLibraryCode/juce_graphics/native \
-                         ../JuceLibraryCode/juce_gui_basics/juce_gui_basics.h \
-                         ../JuceLibraryCode/juce_gui_basics/juce_gui_basics.cpp \
-                         ../JuceLibraryCode/juce_gui_basics/native \
-                         ../JuceLibraryCode/juce_gui_extra/juce_gui_extra.h \
-                         ../JuceLibraryCode/juce_gui_extra/juce_gui_extra.cpp \
-                         ../JuceLibraryCode/juce_gui_extra/native \
-                         ../JuceLibraryCode/juce_opengl/juce_opengl.h \
-                         ../JuceLibraryCode/juce_opengl/juce_opengl.cpp \
-                         ../JuceLibraryCode/juce_opengl/native \
-                         ../JuceLibraryCode/juce_tracktion_marketplace/juce_tracktion_marketplace.h \
-                         ../JuceLibraryCode/juce_video/juce_video.h \
-                         ../JuceLibraryCode/juce_video/juce_video.cpp \
-                         ../JuceLibraryCode/juce_video/native
+EXCLUDE                = 
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -872,10 +827,7 @@ EXCLUDE_SYMLINKS       = YES
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       = juce_GIFLoader* \
-                         juce_JPEGLoader* \
-                         juce_PNGLoader* \
-                         juce_FlacHeader.h
+EXCLUDE_PATTERNS       = 
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
