@@ -78,7 +78,9 @@ private:
     int m_autoHideCounter;
     MainContentComponent *m_windowContent;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
+ //   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainWindow)
+    MainWindow(const MainWindow&) = delete;
+    MainWindow& operator= (const MainWindow&) = delete;
 };
 
 

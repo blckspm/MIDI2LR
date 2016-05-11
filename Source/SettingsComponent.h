@@ -61,7 +61,9 @@ private:
     GroupComponent m_profileGroup;
     std::shared_ptr<SettingsManager> m_settingsManager;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SettingsComponent)
+    //JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SettingsComponent)
+    SettingsComponent(const SettingsComponent&) = delete;
+    SettingsComponent& operator= (const SettingsComponent&) = delete;
 };
 
 

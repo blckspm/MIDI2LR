@@ -120,7 +120,9 @@ private:
 
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainContentComponent)
+    //JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainContentComponent)
+    MainContentComponent(const MainContentComponent&) = delete;
+    MainContentComponent& operator= (const MainContentComponent&) = delete;
 };
 
 

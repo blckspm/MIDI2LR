@@ -40,7 +40,9 @@ public:
 private:
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE(CommandTable)
+//    JUCE_DECLARE_NON_COPYABLE(CommandTable)
+    CommandTable(const CommandTable&) = delete;
+    CommandTable& operator= (const CommandTable&) = delete;
 };
 
 #endif

@@ -68,7 +68,9 @@ private:
     std::shared_ptr<CommandMap> m_commandMap;
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CommandTableModel)
+    //JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CommandTableModel)
+    CommandTableModel(const CommandTableModel&) = delete;
+    CommandTableModel& operator= (const CommandTableModel&) = delete;
 };
 
 #endif
