@@ -25,6 +25,8 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "MIDIProcessor.h"
 #include "LR_IPC_OUT.h"
 #include "CommandMap.h"
+#include "WeakHash.h"
+#include <unordered_set>
 
 /**********************************************************************************************//**
 * @class   ProfileChangeListener
@@ -35,7 +37,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 * @date    3/20/2016
 **************************************************************************************************/
 
-class ProfileChangeListener
+class ProfileChangeListener: public std::enable_shared_from_this<ProfileChangeListener>
 {
 public:
     // called when the current profile is changed
@@ -52,7 +54,7 @@ public:
     ProfileManager() noexcept;
     virtual ~ProfileManager()
     {};
-    void addListener(ProfileChangeListener *listener);
+    void addListener(std::weak_ptr<ProfileChangeListener> listener);
 
     // sets the default profile directory and scans its contents for profiles
     void setProfileDirectory(const File& dir);
@@ -98,7 +100,7 @@ private:
 
     File _profileLocation;
     StringArray _profiles;
-    Array<ProfileChangeListener *> _listeners;
+    std::unordered_set<std::weak_ptr<ProfileChangeListener>,MyWeakPtrHash<ProfileChangeListener>,MyWeakPtrEqual<ProfileChangeListener>> _listeners;
     int _currentProfileIdx;
     SWITCH_STATE _switchState;
     std::shared_ptr<CommandMap> m_commandMap;

@@ -22,6 +22,8 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #define MIDIPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <unordered_set>
+#include "WeakHash.h"
 
 /**********************************************************************************************//**
 * @class   MIDICommandListener
@@ -32,7 +34,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 * @date    3/20/2016
 **************************************************************************************************/
 
-class MIDICommandListener
+class MIDICommandListener: public std::enable_shared_from_this<MIDICommandListener>
 {
 public:
     virtual void handleMidiCC(int midiChannel, int controller, int value) = 0;
@@ -60,7 +62,7 @@ public:
     // overriden from MidiInputCallback
     void handleIncomingMidiMessage(MidiInput*, const MidiMessage&) override;
 
-    void addMIDICommandListener(MIDICommandListener*);
+    void addMIDICommandListener(std::weak_ptr<MIDICommandListener>);
 
     // re-enumerates MIDI IN devices
     void rescanDevices();
@@ -69,7 +71,7 @@ private:
 
     void initDevices();
 
-    Array<MIDICommandListener *> _listeners;
+    std::unordered_set<std::weak_ptr<MIDICommandListener>,MyWeakPtrHash<MIDICommandListener>,MyWeakPtrEqual<MIDICommandListener>> _listeners;
     OwnedArray<MidiInput> _devices;
 };
 

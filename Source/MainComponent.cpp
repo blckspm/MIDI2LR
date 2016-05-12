@@ -416,19 +416,19 @@ void MainContentComponent::Init(std::shared_ptr<CommandMap>& commandMap, std::sh
     if (midiProcessor)
     {
         // Add ourselves as a listener for MIDI commands
-        midiProcessor->addMIDICommandListener(this);
+        midiProcessor->addMIDICommandListener(std::weak_ptr<MIDICommandListener>(MIDICommandListener::shared_from_this()));
     }
 
     if (m_lr_IPC_OUT)
     {
         // Add ourselves as a listener for LR_IPC_OUT events
-        m_lr_IPC_OUT->addListener(this);
+        m_lr_IPC_OUT->addListener(std::weak_ptr<LRConnectionListener>(LRConnectionListener::shared_from_this()));
     }
 
     if (profileManager)
     {
         // Add ourselves as a listener for profile changes
-        profileManager->addListener(this);
+        profileManager->addListener(std::weak_ptr<ProfileChangeListener>(ProfileChangeListener::shared_from_this()));
     }
 
     //Set the component size

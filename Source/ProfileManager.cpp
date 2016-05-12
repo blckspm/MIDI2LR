@@ -44,9 +44,9 @@ ProfileManager::ProfileManager() noexcept : _currentProfileIdx{ 0 }, m_commandMa
  * @param [in,out]  listener    If non-null, the listener.
  **************************************************************************************************/
 
-void ProfileManager::addListener(ProfileChangeListener *listener)
+void ProfileManager::addListener(std::weak_ptr<ProfileChangeListener> listener)
 {
-    _listeners.addIfNotAlreadyThere(listener);
+    _listeners.emplace(listener);
 }
 
 /**********************************************************************************************//**
@@ -127,7 +127,10 @@ void ProfileManager::switchToProfile(const String& profile)
     {
         std::unique_ptr<XmlElement> elem{ XmlDocument::parse(profileFile) };
         for (auto listener : _listeners)
-            listener->profileChanged(elem.get(), profile);
+            if (auto real_listener = listener.lock())
+            {
+                real_listener->profileChanged(elem.get(), profile);
+            }
 
         if (m_lr_IPC_OUT)
         {
@@ -318,11 +321,11 @@ void ProfileManager::Init(std::shared_ptr<LR_IPC_OUT> out, std::shared_ptr<Comma
     if (m_lr_IPC_OUT)
     {
         // add ourselves as a listener to LR_IPC_OUT so that we can send plugin settings on connection
-        m_lr_IPC_OUT->addListener(this);
+        m_lr_IPC_OUT->addListener(std::weak_ptr<LRConnectionListener>(LRConnectionListener::shared_from_this()));
     }
 
     if (midiProcessor)
     {
-        midiProcessor->addMIDICommandListener(this);
+        midiProcessor->addMIDICommandListener(std::weak_ptr<MIDICommandListener>(MIDICommandListener::shared_from_this()));
     }
 }
