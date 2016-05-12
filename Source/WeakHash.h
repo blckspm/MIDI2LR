@@ -1,5 +1,9 @@
 #pragma once
 //http://stackoverflow.com/questions/13695640/how-to-make-a-c11-stdunordered-set-of-stdweak-ptr
+// Caution: these functions do not work once the object has been deleted (weak_ptr then is "0")
+// Would cause problems in many situations, but not in this program, as using an unsorted container
+// and only needing these functions to be correct during insertion into the container.
+// C++17 will fix this issue.
 
 template<typename T>
 struct MyWeakPtrHash: public std::unary_function<std::weak_ptr<T>, size_t>
