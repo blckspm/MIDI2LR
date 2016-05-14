@@ -87,7 +87,7 @@ void LR_IPC_OUT::Init(std::shared_ptr<CommandMap>& mapCommand, std::shared_ptr<M
 
     if (midiProcessor)
     {
-        midiProcessor->addMIDICommandListener(std::weak_ptr<MIDICommandListener>(shared_from_this()));
+        midiProcessor->addMIDICommandListener(this);
     }
 
 
@@ -108,9 +108,9 @@ void LR_IPC_OUT::Init(std::shared_ptr<CommandMap>& mapCommand, std::shared_ptr<M
  * @param [in,out]  listener    If non-null, the listener.
  **************************************************************************************************/
 
-void LR_IPC_OUT::addListener(std::weak_ptr<LRConnectionListener> listener)
+void LR_IPC_OUT::addListener(LRConnectionListener *listener)
 {
-    _listeners.emplace(listener);
+    _listeners.addIfNotAlreadyThere(listener);
 }
 
 /**********************************************************************************************//**
@@ -125,10 +125,7 @@ void LR_IPC_OUT::addListener(std::weak_ptr<LRConnectionListener> listener)
 void LR_IPC_OUT::connectionMade()
 {
     for (auto listener : _listeners)
-        if (auto real_listener = listener.lock())
-        {
-            real_listener->connected();
-        }
+        listener->connected();
 }
 
 /**********************************************************************************************//**
@@ -143,10 +140,7 @@ void LR_IPC_OUT::connectionMade()
 void LR_IPC_OUT::connectionLost()
 {
     for (auto listener : _listeners)
-        if (auto real_listener = listener.lock())
-        {
-            real_listener->disconnected();
-        }
+        listener->disconnected();
 }
 
 /**********************************************************************************************//**

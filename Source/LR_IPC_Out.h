@@ -24,9 +24,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MIDIProcessor.h"
 #include "CommandMap.h"
-#include "WeakHash.h"
 #include <mutex>
-#include <unordered_set>
 
 /**********************************************************************************************//**
  * @class   LRConnectionListener
@@ -37,7 +35,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
  *
  **************************************************************************************************/
 
-class LRConnectionListener: public std::enable_shared_from_this<LRConnectionListener>
+class LRConnectionListener
 {
 public:
     // sent when a connection to the LR plugin is made
@@ -72,7 +70,7 @@ public:
 // closes the socket
     void shutdown();
 
-    void addListener(std::weak_ptr<LRConnectionListener> listener);
+    void addListener(LRConnectionListener *listener);
 
     // sends a command to the plugin
     void sendCommand(const String& command) const;
@@ -97,7 +95,7 @@ public:
 private:
     const static unordered_map<String, KeyPress> KPMappings;
     std::shared_ptr<const CommandMap> m_commandMap;
-    std::unordered_set<std::weak_ptr<LRConnectionListener>,MyWeakPtrHash<LRConnectionListener>,MyWeakPtrEqual<LRConnectionListener>> _listeners;
+    Array<LRConnectionListener *> _listeners;
     int _valueToSend;
     String _commandToSend;
 ///< .

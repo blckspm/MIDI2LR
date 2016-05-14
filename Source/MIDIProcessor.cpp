@@ -114,20 +114,14 @@ void MIDIProcessor::handleIncomingMidiMessage(MidiInput * /*device*/, const Midi
     {
         for (auto listener : _listeners)
         {
-            if (auto real_listener = listener.lock())
-            {
-                real_listener->handleMidiCC(msg.getChannel(), msg.getControllerNumber(), msg.getControllerValue());
-            }
+            listener->handleMidiCC(msg.getChannel(), msg.getControllerNumber(), msg.getControllerValue());
         }
     }
     else if (msg.isNoteOn())
     {
         for (auto listener : _listeners)
         {
-            if (auto real_listener = listener.lock())
-            {
-                real_listener->handleMidiNote(msg.getChannel(), msg.getNoteNumber());
-            }
+            listener->handleMidiNote(msg.getChannel(), msg.getNoteNumber());
         }
     }
 }
@@ -143,7 +137,7 @@ void MIDIProcessor::handleIncomingMidiMessage(MidiInput * /*device*/, const Midi
  * @param [in,out]  listener    If non-null, the listener.
  **************************************************************************************************/
 
-void MIDIProcessor::addMIDICommandListener(std::weak_ptr<MIDICommandListener> listener)
+void MIDIProcessor::addMIDICommandListener(MIDICommandListener* listener)
 {
-    _listeners.emplace(listener);
+    _listeners.addIfNotAlreadyThere(listener);
 }

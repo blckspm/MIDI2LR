@@ -246,7 +246,7 @@ void SettingsManager::Init(std::shared_ptr<LR_IPC_OUT>& lr_IPC_OUT, std::shared_
     if (m_lr_IPC_OUT)
     {
         // add ourselves as a listener to LR_IPC_OUT so that we can send plugin settings on connection
-        m_lr_IPC_OUT->addListener(std::weak_ptr<LRConnectionListener>(LRConnectionListener::shared_from_this()));
+        m_lr_IPC_OUT->addListener(this);
     }
 
     m_profileManager = profileManager;
