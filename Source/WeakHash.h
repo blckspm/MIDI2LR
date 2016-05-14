@@ -4,9 +4,6 @@
 // Would cause problems in many situations, but not in this program, as using an unsorted container
 // and only needing these functions to be correct during insertion into the container.
 // C++17 will fix this issue.
-//
-// Also, when C++17 is around, not only remove WeakHash.h as unnecessary, but also start using
-// weak_from_this(), rather than as currently making a weak_ptr from shared_from_this()
 
 template<typename T>
 struct MyWeakPtrHash: public std::unary_function<std::weak_ptr<T>, size_t>
