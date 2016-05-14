@@ -86,7 +86,7 @@ local lsquo = '\226\128\152'
 local rsquo = '\226\128\153'
 local mdash = '\226\128\148'
 
-To do: integrate "straightenAngle", translate RetouchInfo orientation
+To do: translate RetouchInfo orientation
   TrimEnd TrimStart and translate the local variables above not yet translated.
   ------------------------------------------------------------------------------]]
 
@@ -228,6 +228,7 @@ local DataBase = {
   {"Contrast",'basicTone',true,true,true,false,false,LOC("$$$/AgCameraRawUI/Contrast=Contrast"),basicTone,"Increases or decreases image contrast, mainly affecting midtones. When you increase contrast, the middle-to-dark image areas become darker, and the middle-to-light image areas become lighter. The image tones are inversely affected as you decrease contrast.",'adjustPanel'},
   {"Contrast2012",false,true,false,false,false,false,"Contrast"},
   {"Highlights",'basicTone',true,true,true,false,false,LOC("$$$/AgCameraRawNamedSettings/CameraRawSettingMapping/Highlights=Highlights")..' ('..LOC("$$$/AgCameraRawNamedSettings/CameraRawSettingMapping/HighlightRecovery=Highlight Recovery")..' in '..PV2003and2010..')',basicTone,'Adjusts bright image areas. Drag to the left to darken highlights and recover \226\128\156blown out\226\128\157 highlight details. Drag to the right to brighten highlights while minimizing clipping.<br /><br />In '..PV2003and2010..', controls recovery and reduces the tones of extreme highlights and attempts to recover highlight detail lost because of camera overexposure. Lightroom can recover detail in raw image files if one or two channels are clipped.','adjustPanel'},
+  {"Highlights2012",false,true,false,false,false,false,"Highlights"},
   {"Brightness",'basicTone',true,true,true,false,false,LOC("$$$/AgCameraRawUI/Brightness=Brightness"),basicTone,"Adjusts image brightness, mainly affecting midtones. Adjust Brightness after setting Exposure, Recovery, and Blacks sliders. Large brightness adjustments can affect shadow or highlight clipping, so you may want to readjust the Exposure, Recovery, or Blacks slider after adjusting brightness. No effect unless in PV2003 or PV2010)",'adjustPanel'},
   {"HighlightRecovery",'basicTone',true,false,false,false,false,LOC("$$$/AgCameraRawNamedSettings/CameraRawSettingMapping/HighlightRecovery=Highlight Recovery")..' ('..PV2003and2010..')'},
   {"Shadows",false,false,true,true,false,false,LOC("$$$/AgCameraRawNamedSettings/CameraRawSettingMapping/Shadows=Shadows")..' ('..LOC("$$$/AgCameraRawUI/FillLight=Fill Light")..' in '..PV2003and2010..')',basicTone,'Adjusts dark image areas. Drag to the left to darken shadows while minimizing clipping. Drag to the right to brighten shadows and recover shadow details.<br /><br />In '..PV2003and2010..', controls Fill Light, and lightens shadow to reveal more detail while maintaining blacks. Take care not to over apply the setting and reveal image noise.','adjustPanel'},
