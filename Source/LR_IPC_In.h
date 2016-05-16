@@ -44,21 +44,21 @@ class LR_IPC_IN: public StreamingSocket,
 public:
     LR_IPC_IN();
     virtual ~LR_IPC_IN()
-    {};
+    {
+        std::call_once(callshutdown, &LR_IPC_IN::_shutdown, this);
+    };
 // closes the socket
     void shutdown();
-
     // re-enumerates MIDI OUT devices
     void refreshMIDIOutput();
-
     // Thread interface
     virtual void run() override;
-
     // Timer callback
     virtual void timerCallback() override;
     void Init(std::shared_ptr<CommandMap>& mapCommand, std::shared_ptr<ProfileManager>& profileManager,
         std::shared_ptr<MIDISender>& midiSender) noexcept;
 private:
+    void _shutdown(); //called once
     // process a line received from the socket
     void processLine(const String& line);
     std::shared_ptr<CommandMap> m_commandMap;
@@ -66,6 +66,7 @@ private:
     std::shared_ptr<MIDISender> m_midiSender;
     std::unordered_map<String, int> parameterMap;
     SendKeys m_SendKeys;
+    std::once_flag callshutdown;
 };
 
 

@@ -27,7 +27,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
  *
  **************************************************************************************************/
 
-VersionChecker::VersionChecker() noexcept : Thread{ "VersionChecker" }
+VersionChecker::VersionChecker() : Thread{ "VersionChecker" }
 {
 
 }

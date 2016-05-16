@@ -66,7 +66,9 @@ class LR_IPC_OUT: public InterprocessConnection,
 public:
     LR_IPC_OUT();
     virtual ~LR_IPC_OUT()
-    {};
+    {
+        std::call_once(callshutdown, &LR_IPC_OUT::_shutdown, this);
+    };
 // closes the socket
     void shutdown();
 
@@ -93,11 +95,13 @@ public:
     virtual void timerCallback() override;
     void Init(std::shared_ptr<CommandMap>&  mapCommand, std::shared_ptr<MIDIProcessor>&  midiProcessor);
 private:
+    void _shutdown();
     const static unordered_map<String, KeyPress> KPMappings;
     std::shared_ptr<const CommandMap> m_commandMap;
     Array<LRConnectionListener *> _listeners;
     int _valueToSend;
     String _commandToSend;
+    std::once_flag callshutdown;
 ///< .
 };
 

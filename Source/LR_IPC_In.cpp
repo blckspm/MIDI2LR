@@ -48,14 +48,17 @@ Thread{ "LR_IPC_IN" }, m_commandMap{ nullptr }, m_profileManager{ nullptr }, m_m
 
 void LR_IPC_IN::shutdown()
 {
+    std::call_once(callshutdown, &LR_IPC_IN::_shutdown, this);
+}
 
+void LR_IPC_IN::_shutdown()
+{
     stopTimer();
     stopThread(1000);
     close();
     m_commandMap.reset();
     m_profileManager.reset();
     m_midiSender.reset();
-
 }
 
 /**********************************************************************************************//**

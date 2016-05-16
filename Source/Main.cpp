@@ -71,14 +71,8 @@ public:
         m_settingsManager = std::make_shared<SettingsManager>();
         m_midiProcessor = std::make_shared<MIDIProcessor>();
         m_midiSender = std::make_shared<MIDISender>();
-        m_lr_IPC_OUT = std::shared_ptr<LR_IPC_OUT>(new LR_IPC_OUT, [](LR_IPC_OUT* me)
-        {
-            me->shutdown();
-        });
-        m_lr_IPC_IN = std::shared_ptr<LR_IPC_IN>(new LR_IPC_IN, [](LR_IPC_IN* me)
-        {
-            me->shutdown();
-        });
+        m_lr_IPC_OUT = std::make_shared<LR_IPC_OUT>();
+        m_lr_IPC_IN = std::make_shared<LR_IPC_IN>();
     }
 
     const String getApplicationName() override
