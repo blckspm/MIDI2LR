@@ -8,7 +8,7 @@ public:
     {
         join, detach
     };
-    ThreadRAII(std::thread&& t, DtorAction a)
+    ThreadRAII(std::thread&& t, DtorAction a) noexcept(noexcept(std::move(t)))
         : die{ false }, action{ a }, t(std::move(t))
     {}
     virtual ~ThreadRAII()
@@ -28,11 +28,11 @@ public:
     }
     ThreadRAII(ThreadRAII&&) = default;
     ThreadRAII& operator=(ThreadRAII&&) = default;
-    std::thread& get()
+    inline std::thread& get() noexcept
     {
         return t;
     }
-    void pleaseDie()
+    inline void pleaseDie() noexcept
     {
         die = true;
     }
