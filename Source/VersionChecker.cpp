@@ -20,19 +20,6 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "VersionChecker.h"
 
 /**********************************************************************************************//**
- * @fn  VersionChecker::VersionChecker() noexcept
- *
- * @brief   Default constructor.
- *
- *
- **************************************************************************************************/
-
-VersionChecker::VersionChecker() : Thread{ "VersionChecker" }
-{
-
-}
-
-/**********************************************************************************************//**
  * @fn  void VersionChecker::Init(std::shared_ptr<SettingsManager>& settingsManager)
  *
  * @brief   Inits the given settings manager.
@@ -55,10 +42,41 @@ void VersionChecker::Init(std::shared_ptr<SettingsManager>& settingsManager) noe
  *
  *
  **************************************************************************************************/
+#ifndef _WIN32
+ //missing make_unique (C++14) in XCode
+namespace std
+{
+    template<class _Ty,
+    class... _Types> inline
+        typename enable_if<!is_array<_Ty>::value,
+        unique_ptr<_Ty> >::type make_unique(_Types&&... _Args)
+    {	// make a unique_ptr
+        return (unique_ptr<_Ty>(new _Ty(std::forward<_Types>(_Args)...)));
+    }
 
+    template<class _Ty> inline
+        typename enable_if<is_array<_Ty>::value && extent<_Ty>::value == 0,
+        unique_ptr<_Ty> >::type make_unique(size_t _Size)
+    {	// make a unique_ptr
+        typedef typename remove_extent<_Ty>::type _Elem;
+        return (unique_ptr<_Ty>(new _Elem[_Size]()));
+    }
+
+    template<class _Ty,
+    class... _Types>
+        typename enable_if<extent<_Ty>::value != 0,
+        void>::type make_unique(_Types&&...) = delete;
+}
+#endif
 void VersionChecker::run()
 {
-    URL versionURL{ "http://rsjaffe.github.io/MIDI2LR/version.xml" };
+    m_thread = std::make_unique<ThreadRAII>(std::thread(&VersionChecker::_run, this), ThreadRAII::DtorAction::join);
+}
+
+
+void VersionChecker::_run()
+{
+    URL versionURL{ "http://rsjaffe.github.io/MIDI2LR/version1.xml" };
     unique_ptr<XmlElement> versionElem{ versionURL.readEntireXmlStream() };
     int lastchecked{ 0 };
     if (m_settingsManager)
@@ -72,17 +90,9 @@ void VersionChecker::run()
     }
 }
 
-/**********************************************************************************************//**
- * @fn  void VersionChecker::handleAsyncUpdate()
- *
- * @brief   Handles the asynchronous update.
- *
- *
- **************************************************************************************************/
-
 void VersionChecker::handleAsyncUpdate()
 {
-    // show a dialog box indicating there is a newer version available
+        // show a dialog box indicating there is a newer version available
     DialogWindow::LaunchOptions dwOpt;
     dwOpt.dialogTitle = "New Version Available!";
 
@@ -99,4 +109,5 @@ void VersionChecker::handleAsyncUpdate()
     dwOpt.escapeKeyTriggersCloseButton = true;
     _dialog.reset(dwOpt.create());
     _dialog->setVisible(true);
+
 }
