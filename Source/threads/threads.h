@@ -9,7 +9,7 @@ public:
         join, detach
     };
     ThreadRAII(std::thread&& t, DtorAction a) noexcept(noexcept(std::move(t)))
-        : die{ false }, action{ a }, t(std::move(t))
+        : action{ a }, t(std::move(t))
     {}
     virtual ~ThreadRAII()
     {
@@ -17,7 +17,6 @@ public:
         {
             if (action == DtorAction::join)
             {
-                die = true;
                 t.join();
             }
             else
@@ -32,12 +31,7 @@ public:
     {
         return t;
     }
-    inline void pleaseDie() noexcept
-    {
-        die = true;
-    }
 private:
-    std::atomic_bool die;
     DtorAction action;
     std::thread t;
 };
