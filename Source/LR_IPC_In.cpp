@@ -54,7 +54,7 @@ void LR_IPC_IN::shutdown()
 void LR_IPC_IN::_shutdown()
 {
     stopTimer();
-    if (isThreadRunning) //doesn't like getting stop signal after already stopped, throws exception
+    if (isThreadRunning()) //doesn't like getting stop signal after already stopped, throws exception
         stopThread(1000);
     close();
     m_commandMap.reset();
