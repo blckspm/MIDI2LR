@@ -122,6 +122,7 @@ public:
         // Save the current profile as default.xml
         auto defaultProfile = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("default.xml");
         m_commandMap->toXMLDocument(defaultProfile);
+        m_lr_IPC_IN->shutdown(); //try to stop async task first: we're having sx of livelock during shutdown
         m_lr_IPC_IN.reset();
         m_lr_IPC_OUT.reset();
         m_midiSender.reset();
