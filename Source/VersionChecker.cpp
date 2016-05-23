@@ -76,7 +76,7 @@ void VersionChecker::run()
 
 void VersionChecker::_run()
 {
-    URL versionURL{ "http://rsjaffe.github.io/MIDI2LR/version1.xml" };
+    URL versionURL{ "http://rsjaffe.github.io/MIDI2LR/version.xml" };
     unique_ptr<XmlElement> versionElem{ versionURL.readEntireXmlStream() };
     int lastchecked{ 0 };
     if (m_settingsManager)
