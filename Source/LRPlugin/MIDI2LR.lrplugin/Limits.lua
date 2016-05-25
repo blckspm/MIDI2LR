@@ -35,7 +35,7 @@ local LrView              = import 'LrView'
 local ParamList           = require 'ParamList'
 
 --hidden 
-local DisplayOrder           = {'Temperature','Tint','Exposure'}
+local DisplayOrder           = {'Temperature','Tint','Exposure','straightenAngle'}
 
 --public--each must be in table of exports
 
