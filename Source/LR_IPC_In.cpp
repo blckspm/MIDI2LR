@@ -93,10 +93,7 @@ void LR_IPC_IN::timerCallback()
 
 void LR_IPC_IN::Init(std::shared_ptr<CommandMap>& mapCommand, std::shared_ptr<ProfileManager>& profileManager,
     std::shared_ptr<MIDISender>& midiSender) noexcept
-{   //thread shouldn't be running, but on the off chance that Init is called a second time, stop thread, let
-    //timer restart it after Init sets its values
-    if (isThreadRunning()) //doesn't like getting stop signal after already stopped, throws exception
-        stopThread(1000);
+{
     m_commandMap = mapCommand;
     m_profileManager = profileManager;
     m_midiSender = midiSender;
