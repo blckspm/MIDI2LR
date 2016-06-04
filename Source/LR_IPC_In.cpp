@@ -113,12 +113,13 @@ void LR_IPC_IN::run()
 {
     while (!threadShouldExit())
     {
-        char line[256] = { '\0' };
+        constexpr auto bufsize = 256;
+        char line[bufsize] = { '\0' };
         auto sizeRead = 0;
         auto canReadLine = true;
 
         // parse input until we have a line, then process that line
-        while (!juce::String(line).endsWithChar('\n') && !threadShouldExit())
+        while (std::string(line).back() != '\n' && !threadShouldExit())
         {
             auto waitStatus = waitUntilReady(true, 100);
             if (waitStatus < 0)//read error
@@ -128,7 +129,7 @@ void LR_IPC_IN::run()
             }
             else if (waitStatus == 1)//data ready
             {
-                if (sizeRead == 256) //buffer will overflow next read
+                if (sizeRead == bufsize) //buffer will overflow next read
                     throw(out_of_range("LR_IPC_IN run buffer out of range"));
                 sizeRead += read(line + sizeRead, 1, false);
             }
