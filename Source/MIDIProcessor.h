@@ -51,7 +51,7 @@ public:
 * @date    3/20/2016
 **************************************************************************************************/
 
-class MIDIProcessor: public MidiInputCallback
+class MIDIProcessor final: public MidiInputCallback
 {
 public:
     MIDIProcessor() noexcept;

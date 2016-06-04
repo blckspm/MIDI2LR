@@ -34,7 +34,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 * @date    3/20/2016
 **************************************************************************************************/
 
-class SettingsManager: public LRConnectionListener
+class SettingsManager final: public LRConnectionListener
 {
 public:
     SettingsManager();

@@ -61,7 +61,7 @@ const juce::String ShutDownString{ "--LRSHUTDOWN" };
  *
  **************************************************************************************************/
 
-class MIDI2LRApplication: public JUCEApplication
+class MIDI2LRApplication final: public JUCEApplication
 {
 public:
     MIDI2LRApplication()

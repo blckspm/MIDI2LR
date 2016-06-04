@@ -58,7 +58,7 @@ public:
  *
  **************************************************************************************************/
 
-class LR_IPC_OUT: public InterprocessConnection,
+class LR_IPC_OUT final: public InterprocessConnection,
     public MIDICommandListener,
     public AsyncUpdater,
     public Timer
