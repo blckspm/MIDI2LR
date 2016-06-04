@@ -67,7 +67,7 @@
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2015 targetFolder="Builds/VisualStudio2015" smallIcon="WdgQGt" bigIcon="WdgQGt"
-            extraCompilerFlags="">
+            extraCompilerFlags="/wd&quot;4592&quot;">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="MIDI2LR" binaryPath=""/>
