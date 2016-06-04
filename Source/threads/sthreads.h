@@ -21,13 +21,13 @@ class Sync_queue
 public:
     void put(const T& val)
     {
-        std::lock_guard<mutex> lck(mtx);
+        std::lock_guard<std::mutex> lck(mtx);
         q.push_back(val);
         cond.notify_one();
     };
     void put(T&& val)
     {
-        std::lock_guard<mutex> lck(mtx);
+        std::lock_guard<std::mutex> lck(mtx);
         q.emplace_back(std::forward<T>(val));
         cond.notify_one();
     };
@@ -35,7 +35,7 @@ public:
     {
         if (!running.load())
             return false;
-        std::unique_lock<mutex> lck(mtx);
+        std::unique_lock<std::mutex> lck(mtx);
         cond.wait(lck, [this]
         {
             return !q.empty() || !running.load();
@@ -52,7 +52,7 @@ public:
     {
         if (!running.load())
             return false;
-        std::unique_lock<mutex> lck(mtx);
+        std::unique_lock<std::mutex> lck(mtx);
         bool expired = cond.wait_for(lck, d, [this]
         {
             return !q.empty() || !running.load();
