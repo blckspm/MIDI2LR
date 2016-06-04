@@ -70,7 +70,7 @@ namespace std
 #endif
 void VersionChecker::run()
 {
-    m_thread = std::make_unique<ThreadRAII>(std::thread(&VersionChecker::_run, this), ThreadRAII::DtorAction::join);
+    m_thread = std::make_unique<guarded_thread>(&VersionChecker::_run, this);
 }
 
 
