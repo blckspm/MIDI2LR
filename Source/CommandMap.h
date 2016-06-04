@@ -119,7 +119,7 @@ namespace std
  *
  **************************************************************************************************/
 
-class CommandMap: public Subject
+class CommandMap final: public Subject
 {
 public:
     CommandMap() noexcept;

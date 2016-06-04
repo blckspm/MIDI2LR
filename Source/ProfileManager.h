@@ -45,7 +45,7 @@ public:
     {};
 };
 
-class ProfileManager: public MIDICommandListener,
+class ProfileManager final: public MIDICommandListener,
     public AsyncUpdater, public LRConnectionListener
 {
 public:
