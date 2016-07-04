@@ -117,12 +117,16 @@ threadExit: /* empty statement */;
 void LR_IPC_IN::timerCallback() {
   std::lock_guard< decltype(timer_mutex_) > lock(timer_mutex_);
   if (!isConnected()) {
-    if (connect("127.0.0.1", kLrInPort, 100))
-      if (!thread_started_) {
-        startThread(); //avoid starting thread during shutdown
-        thread_started_ = true;
-      }
+    if (++seconds_disconnected_ > 10) {
+      if (connect("127.0.0.1", kLrInPort, 100))
+        if (!thread_started_) {
+          startThread(); //avoid starting thread during shutdown
+          thread_started_ = true;
+        }
+    }
   }
+  else
+    seconds_disconnected_ = 0;
 }
 void LR_IPC_IN::processLine(const juce::String& line) {
   const static std::unordered_map<juce::String, int> cmds = {
