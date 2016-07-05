@@ -21,7 +21,10 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "LR_IPC_In.h"
 #include <bitset>
 
-constexpr auto kLrInPort = 58764;
+namespace {
+  constexpr auto kLrInPort = 58764;
+  constexpr auto kBufferSize = 256;
+}
 
 LR_IPC_IN::LR_IPC_IN(): StreamingSocket{}, Thread{"LR_IPC_IN"} {}
 
@@ -73,7 +76,6 @@ void LR_IPC_IN::run() {
       wait(333);
     } //end if (is not connected)
     else {
-      constexpr auto kBufferSize = 256;
       char line[kBufferSize + 1] = {'\0'};//plus one for \0 at end
       auto size_read = 0;
       auto can_read_line = true;
@@ -117,7 +119,7 @@ threadExit: /* empty statement */;
 void LR_IPC_IN::timerCallback() {
   std::lock_guard< decltype(timer_mutex_) > lock(timer_mutex_);
   if (!isConnected()) {
-    if (++seconds_disconnected_ > 10) {
+    if (++seconds_disconnected_ > reconnect_delay_) {
       if (connect("127.0.0.1", kLrInPort, 100))
         if (!thread_started_) {
           startThread(); //avoid starting thread during shutdown

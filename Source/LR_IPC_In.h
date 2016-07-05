@@ -52,7 +52,8 @@ private:
   bool thread_started_{false};
   mutable std::mutex timer_mutex_;
   SendKeys send_keys_;
-  int seconds_disconnected_{10};
+  static constexpr int reconnect_delay_{10};
+  int seconds_disconnected_{reconnect_delay_};
   std::shared_ptr<CommandMap> command_map_{nullptr};
   std::shared_ptr<MIDISender> midi_sender_{nullptr};
   std::shared_ptr<ProfileManager> profile_manager_{nullptr};

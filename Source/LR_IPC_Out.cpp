@@ -22,7 +22,9 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "CommandMap.h"
 #include "LRCommands.h"
 
-constexpr auto kLrOutPort = 58763;
+namespace {
+  constexpr auto kLrOutPort = 58763;
+}
 
 LR_IPC_OUT::LR_IPC_OUT(): InterprocessConnection() {}
 

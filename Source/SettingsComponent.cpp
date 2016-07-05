@@ -22,9 +22,11 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "SettingsComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-constexpr auto SettingsLeft = 20;
-constexpr auto SettingsWidth = 400;
-constexpr auto SettingsHeight = 300;
+namespace {
+  constexpr auto SettingsLeft = 20;
+  constexpr auto SettingsWidth = 400;
+  constexpr auto SettingsHeight = 300;
+}
 
 SettingsComponent::SettingsComponent(): ResizableLayout{this} {}
 
