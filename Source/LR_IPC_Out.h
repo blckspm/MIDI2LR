@@ -68,7 +68,8 @@ private:
   virtual void handleAsyncUpdate() override;
   // Timer callback
   virtual void timerCallback() override;
-
+  static constexpr int reconnect_delay_{10};
+  int seconds_disconnected_{reconnect_delay_};
   std::vector<LRConnectionListener *> listeners_;
   bool timer_off_{false};
   const static std::unordered_map<String, KeyPress> keypress_mappings_;

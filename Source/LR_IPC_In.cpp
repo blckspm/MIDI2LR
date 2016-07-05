@@ -23,6 +23,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace {
   constexpr auto kLrInPort = 58764;
+  constexpr auto kLRTimeOut = 100; //100 msec timeout for connecting
   constexpr auto kBufferSize = 256;
 }
 
@@ -120,7 +121,7 @@ void LR_IPC_IN::timerCallback() {
   std::lock_guard< decltype(timer_mutex_) > lock(timer_mutex_);
   if (!isConnected()) {
     if (++seconds_disconnected_ > reconnect_delay_) {
-      if (connect("127.0.0.1", kLrInPort, 100))
+      if (connect("127.0.0.1", kLrInPort, kLRTimeOut))
         if (!thread_started_) {
           startThread(); //avoid starting thread during shutdown
           thread_started_ = true;

@@ -24,6 +24,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace {
   constexpr auto kLrOutPort = 58763;
+  constexpr auto kLRTimeOut = 100; //100 msec timeout for connecting
 }
 
 LR_IPC_OUT::LR_IPC_OUT(): InterprocessConnection() {}
@@ -136,7 +137,9 @@ void LR_IPC_OUT::handleAsyncUpdate() {
 }
 
 void LR_IPC_OUT::timerCallback() {
-  std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
-  if (!isConnected() && !timer_off_)
-    connectToSocket("127.0.0.1", kLrOutPort, 100);
+  if (++seconds_disconnected_ > reconnect_delay_) {
+    std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
+    if (!isConnected() && !timer_off_)
+      connectToSocket("127.0.0.1", kLrOutPort, kLRTimeOut);
+  }
 }
