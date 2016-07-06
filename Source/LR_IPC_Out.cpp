@@ -34,8 +34,8 @@ LR_IPC_OUT::~LR_IPC_OUT() {
     std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
     timer_off_ = true;
     stopTimer();
-    disconnect();
   }
+  disconnect();
   command_map_.reset();
 }
 
@@ -137,9 +137,9 @@ void LR_IPC_OUT::handleAsyncUpdate() {
 }
 
 void LR_IPC_OUT::timerCallback() {
-  if (++seconds_disconnected_ > reconnect_delay_) {
-    std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
-    if (!isConnected() && !timer_off_)
-      connectToSocket("127.0.0.1", kLrOutPort, kLRTimeOut);
-  }
+  std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
+  if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
+    connectToSocket("127.0.0.1", kLrOutPort, kLRTimeOut);
+  else
+    seconds_disconnected_ = 0;
 }

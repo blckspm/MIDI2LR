@@ -50,10 +50,11 @@ private:
   void processLine(const String& line);
 
   bool thread_started_{false};
-  mutable std::mutex timer_mutex_;
+  int seconds_disconnected_{kReconnectDelay};
+  mutable RSJ::spinlock timer_mutex_;
   SendKeys send_keys_;
-  static constexpr int reconnect_delay_{10};
-  int seconds_disconnected_{reconnect_delay_};
+  static constexpr int kReconnectDelay{10};
+  std::atomic_bool timer_off_{false};
   std::shared_ptr<CommandMap> command_map_{nullptr};
   std::shared_ptr<MIDISender> midi_sender_{nullptr};
   std::shared_ptr<ProfileManager> profile_manager_{nullptr};

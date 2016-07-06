@@ -22,6 +22,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef LR_IPC_OUT_H_INCLUDED
 #define LR_IPC_OUT_H_INCLUDED
 
+#include <atomic>
 #include <mutex>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Utilities/Utilities.h"
@@ -61,22 +62,22 @@ public:
 
 private:
   // IPC interface
-  virtual void connectionMade() override;
   virtual void connectionLost() override;
+  virtual void connectionMade() override;
   virtual void messageReceived(const MemoryBlock& msg) override;
   // AsyncUpdater interface
   virtual void handleAsyncUpdate() override;
   // Timer callback
   virtual void timerCallback() override;
-  static constexpr int reconnect_delay_{10};
-  int seconds_disconnected_{reconnect_delay_};
-  std::vector<LRConnectionListener *> listeners_;
+
   bool timer_off_{false};
-  const static std::unordered_map<String, KeyPress> keypress_mappings_;
+  int seconds_disconnected_{kReconnectDelay};
+  juce::String command_;
   mutable RSJ::spinlock command_mutex_; //fast spinlock for brief use
-  mutable std::mutex timer_mutex_; //fix race during shutdown
+  mutable RSJ::spinlock timer_mutex_;
+  static constexpr int kReconnectDelay{10};
   std::shared_ptr<const CommandMap> command_map_;
-  String command_;
+  std::vector<LRConnectionListener *> listeners_;
 };
 
 #endif  // LR_IPC_OUT_H_INCLUDED
