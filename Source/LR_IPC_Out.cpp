@@ -27,7 +27,7 @@ namespace {
   constexpr auto kLRTimeOut = 100; //100 msec timeout for connecting
 }
 
-LR_IPC_OUT::LR_IPC_OUT(): InterprocessConnection() {}
+LR_IPC_OUT::LR_IPC_OUT(): StreamingSocket() {}
 
 LR_IPC_OUT::~LR_IPC_OUT() {
   {
@@ -35,7 +35,7 @@ LR_IPC_OUT::~LR_IPC_OUT() {
     timer_off_ = true;
     stopTimer();
   }
-  disconnect();
+  close();
   command_map_.reset();
 }
 
@@ -112,34 +112,48 @@ void LR_IPC_OUT::handleMidiNote(int midi_channel, int note) {
   }
 }
 
-void LR_IPC_OUT::connectionMade() {
+void LR_IPC_OUT::ConnectionMade() {
   for (auto listener : listeners_)
     listener->connected();
 }
 
-void LR_IPC_OUT::connectionLost() {
+void LR_IPC_OUT::ConnectionLost() {
   for (auto listener : listeners_)
     listener->disconnected();
 }
 
-void LR_IPC_OUT::messageReceived(const MemoryBlock& /*msg*/) {}
-
 void LR_IPC_OUT::handleAsyncUpdate() {
+  std::lock_guard<decltype(write_mutex_)> updatelock(write_mutex_);
   String command_copy;
   {
     std::lock_guard<decltype(command_mutex_)> lock(command_mutex_);
     command_copy = std::move(command_); //JUCE::String swaps in this case
   }
     //check if there is a connection
-  if (isConnected()) {
-    getSocket()->write(command_copy.getCharPointer(), command_copy.length());
-  }
+  if (isConnected())
+    if (waitUntilReady(false, 0) == 1) //get out quick if unavailable, avoid hanging
+      if (write(command_copy.getCharPointer(), command_copy.length()) > -1)
+        return;
+
+  std::lock_guard<decltype(command_mutex_)> lock(command_mutex_);
+  command_ = command_copy + command_; //send failed, add back to command list
 }
 
 void LR_IPC_OUT::timerCallback() {
+  if (isConnected()) {
+    if (!is_connected_) {
+      is_connected_ = true;
+      ConnectionMade();
+    }
+  }
+  else if (is_connected_) {
+    is_connected_ = false;
+    ConnectionLost();
+  }
+
   std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
   if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
-    connectToSocket("127.0.0.1", kLrOutPort, kLRTimeOut);
+    connect("127.0.0.1", kLrOutPort, kLRTimeOut);
   else
     seconds_disconnected_ = 0;
 }

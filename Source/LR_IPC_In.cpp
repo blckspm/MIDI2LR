@@ -89,13 +89,12 @@ void LR_IPC_IN::run() {
       while (!juce::String(line).endsWithChar('\n') && isConnected()) {
         if (threadShouldExit())
           goto threadExit;//break out of nested whiles
-        const auto wait_status = waitUntilReady(true, 0);
+        const auto wait_status = waitUntilReady(true, 50);
         switch (wait_status) {
           case -1:
             can_read_line = false;
             goto dumpLine; //read line failed, break out of switch and while
           case 0:
-            wait(100);
             break; //try again to read until char shows up
           case 1:
             if (size_read == kBufferSize)

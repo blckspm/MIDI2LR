@@ -41,7 +41,7 @@ public:
 ///< .
 };
 
-class LR_IPC_OUT final: private InterprocessConnection,
+class LR_IPC_OUT final: private StreamingSocket,
   public MIDICommandListener,
   private AsyncUpdater,
   private Timer {
@@ -61,21 +61,22 @@ public:
   virtual void handleMidiNote(int midiChannel, int note) override;
 
 private:
-  // IPC interface
-  virtual void connectionLost() override;
-  virtual void connectionMade() override;
-  virtual void messageReceived(const MemoryBlock& msg) override;
+  void ConnectionMade();
+  void ConnectionLost();
+
   // AsyncUpdater interface
   virtual void handleAsyncUpdate() override;
   // Timer callback
   virtual void timerCallback() override;
 
   bool timer_off_{false};
+  bool is_connected_{false};
   int seconds_disconnected_{kReconnectDelay};
   juce::String command_;
   mutable RSJ::spinlock command_mutex_; //fast spinlock for brief use
   mutable RSJ::spinlock timer_mutex_;
   static constexpr int kReconnectDelay{10};
+  std::mutex write_mutex_; //since it can hang at waitUntilReady
   std::shared_ptr<const CommandMap> command_map_;
   std::vector<LRConnectionListener *> listeners_;
 };
