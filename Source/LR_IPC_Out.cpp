@@ -133,13 +133,23 @@ void LR_IPC_OUT::handleAsyncUpdate() {
   if (isConnected())
     if (waitUntilReady(false, 0) == 1) //get out quick if unavailable, avoid hanging
       if (write(command_copy.getCharPointer(), command_copy.length()) > -1)
-        return;
-
-  std::lock_guard<decltype(command_mutex_)> lock(command_mutex_);
-  command_ = command_copy + command_; //send failed, add back to command list
+        return; //success, exit now
+  {
+    std::lock_guard<decltype(command_mutex_)> lock(command_mutex_);
+    command_ = command_copy + command_; //send failed, add back to command list
+  }
+  triggerAsyncUpdate(); // need to go back in again
 }
 
 void LR_IPC_OUT::timerCallback() {
+  {
+    std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
+    if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
+      connect("127.0.0.1", kLrOutPort, kLRTimeOut);
+    else
+      seconds_disconnected_ = 0;
+  }
+  //don't care if following occurs after stopping timer, so mutex unnecessary
   if (isConnected()) {
     if (!is_connected_) {
       is_connected_ = true;
@@ -150,10 +160,4 @@ void LR_IPC_OUT::timerCallback() {
     is_connected_ = false;
     ConnectionLost();
   }
-
-  std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
-  if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
-    connect("127.0.0.1", kLrOutPort, kLRTimeOut);
-  else
-    seconds_disconnected_ = 0;
 }
