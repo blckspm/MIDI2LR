@@ -22,9 +22,9 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include <bitset>
 
 namespace {
-  constexpr auto kLrInPort = 58764;
-  constexpr auto kLRTimeOut = 100; //100 msec timeout for connecting
   constexpr auto kBufferSize = 256;
+  constexpr auto kConnectTimeOut = 100; //100 msec timeout for connecting
+  constexpr auto kLrInPort = 58764;
 }
 
 LR_IPC_IN::LR_IPC_IN(): StreamingSocket{}, Thread{"LR_IPC_IN"} {}
@@ -65,7 +65,7 @@ void LR_IPC_IN::refreshMIDIOutput() {
   }
 }
 
-void LR_IPC_IN::PleaseStopThread() {
+void LR_IPC_IN::PleaseStopThread() noexcept {
   signalThreadShouldExit();
   notify();
 }
@@ -124,7 +124,7 @@ threadExit: /* empty statement */;
 void LR_IPC_IN::timerCallback() {
   std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
   if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay)) {
-    if (connect("127.0.0.1", kLrInPort, kLRTimeOut))
+    if (connect("127.0.0.1", kLrInPort, kConnectTimeOut))
       if (!thread_started_) {
         startThread(); //avoid starting thread during shutdown
         thread_started_ = true;

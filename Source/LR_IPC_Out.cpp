@@ -23,8 +23,9 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "LRCommands.h"
 
 namespace {
+  constexpr auto kConnectTimeOut = 100; //100 msec timeout for connecting
   constexpr auto kLrOutPort = 58763;
-  constexpr auto kLRTimeOut = 100; //100 msec timeout for connecting
+  constexpr auto kReadyWait = 0; //get out of read quickly
 }
 
 LR_IPC_OUT::LR_IPC_OUT(): StreamingSocket() {}
@@ -53,10 +54,8 @@ void LR_IPC_OUT::Init(std::shared_ptr<CommandMap>& command_map,
 }
 
 void LR_IPC_OUT::addListener(LRConnectionListener *listener) {
-  for (auto current_listener : listeners_)
-    if (current_listener == listener)
-      return; //don't add duplicates
-  listeners_.push_back(listener);
+  if (std::find(listeners_.begin(), listeners_.end(), listener) == listeners_.end())
+    listeners_.push_back(listener); //add if not already in list
 }
 
 void LR_IPC_OUT::sendCommand(const String &command) {
@@ -112,14 +111,16 @@ void LR_IPC_OUT::handleMidiNote(int midi_channel, int note) {
   }
 }
 
-void LR_IPC_OUT::ConnectionMade() {
-  for (auto listener : listeners_)
-    listener->connected();
-}
-
 void LR_IPC_OUT::ConnectionLost() {
+  is_connected_ = false;
   for (auto listener : listeners_)
     listener->disconnected();
+}
+
+void LR_IPC_OUT::ConnectionMade() {
+  is_connected_ = true;
+  for (auto listener : listeners_)
+    listener->connected();
 }
 
 void LR_IPC_OUT::handleAsyncUpdate() {
@@ -131,7 +132,7 @@ void LR_IPC_OUT::handleAsyncUpdate() {
   }
     //check if there is a connection
   if (isConnected())
-    if (waitUntilReady(false, 0) == 1) //get out quick if unavailable, avoid hanging
+    if (waitUntilReady(false, kReadyWait) == 1)
       if (write(command_copy.getCharPointer(), command_copy.length()) > -1)
         return; //success, exit now
   {
@@ -145,19 +146,15 @@ void LR_IPC_OUT::timerCallback() {
   {
     std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
     if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
-      connect("127.0.0.1", kLrOutPort, kLRTimeOut);
+      connect("127.0.0.1", kLrOutPort, kConnectTimeOut);
     else
       seconds_disconnected_ = 0;
   }
   //don't care if following occurs after stopping timer, so mutex unnecessary
   if (isConnected()) {
-    if (!is_connected_) {
-      is_connected_ = true;
+    if (!is_connected_)
       ConnectionMade();
-    }
   }
-  else if (is_connected_) {
-    is_connected_ = false;
+  else if (is_connected_)
     ConnectionLost();
-  }
 }

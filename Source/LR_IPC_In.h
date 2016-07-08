@@ -28,9 +28,10 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "ProfileManager.h"
 #include "SendKeys.h"
 
-class LR_IPC_IN final: private StreamingSocket,
-  private Timer,
-  private Thread {
+class LR_IPC_IN final:
+  private StreamingSocket,
+  private Thread,
+  private Timer {
 public:
   LR_IPC_IN();
   virtual ~LR_IPC_IN();
@@ -40,7 +41,7 @@ public:
   // re-enumerates MIDI OUT devices
   void refreshMIDIOutput();
   //signal exit to thread
-  void PleaseStopThread(void);
+  void PleaseStopThread() noexcept;
 private:
   // Thread interface
   virtual void run() override;

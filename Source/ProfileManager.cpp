@@ -42,10 +42,8 @@ void ProfileManager::Init(std::weak_ptr<LR_IPC_OUT> out,
 }
 
 void ProfileManager::addListener(ProfileChangeListener *listener) {
-  for (auto current_listener : listeners_)
-    if (current_listener == listener)
-      return; //don't add duplicates
-  listeners_.push_back(listener);
+  if (std::find(listeners_.begin(), listeners_.end(), listener) == listeners_.end())
+    listeners_.push_back(listener);
 }
 
 void ProfileManager::setProfileDirectory(const File& directory) {

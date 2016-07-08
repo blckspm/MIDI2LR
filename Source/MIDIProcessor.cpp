@@ -57,10 +57,8 @@ void MIDIProcessor::handleIncomingMidiMessage(MidiInput * /*device*/,
 }
 
 void MIDIProcessor::addMIDICommandListener(MIDICommandListener* listener) {
-  for (auto const& current_listener : listeners_)
-    if (current_listener == listener)
-      return; //don't add duplicates
-  listeners_.push_back(listener);
+  if (std::find(listeners_.begin(), listeners_.end(), listener) == listeners_.end())
+    listeners_.push_back(listener);
 }
 
 void MIDIProcessor::rescanDevices() {
