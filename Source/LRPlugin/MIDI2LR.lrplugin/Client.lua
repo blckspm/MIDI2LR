@@ -559,6 +559,7 @@ LrTasks.startAsyncTask(
           end
         end
         client:close()
+        MIDI2LR.SERVER:send('TerminateApplication 1\n')
         MIDI2LR.SERVER:close()
       end 
     )
