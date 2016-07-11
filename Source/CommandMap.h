@@ -25,7 +25,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include <unordered_map>
 #include "../JuceLibraryCode/JuceHeader.h"
 
-enum class MessageType: int {
+enum class MessageType {
   NOTE, CC, PITCHBEND
 };
 
@@ -68,10 +68,12 @@ struct MIDI_Message {
 namespace std {
   template <>
   struct hash<MIDI_Message> {
+    using MTypeType = std::underlying_type<MessageType>::type;
     std::size_t operator()(const MIDI_Message& k) const noexcept {
-      return (std::hash<int>()(static_cast<int>(k.messageType)) ^
-        std::hash<int>()(k.channel) ^
-        (std::hash<int>()(k.data) << 1));
+      return
+        (std::hash<MTypeType>()(static_cast<MTypeType>(k.messageType)) ^
+          std::hash<int>()(k.channel) ^
+          (std::hash<int>()(k.data) << 1));
     }
   };
 
