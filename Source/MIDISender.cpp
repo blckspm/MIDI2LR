@@ -53,6 +53,12 @@ void MIDISender::RescanDevices() {
   InitDevices_();
 }
 
+void MIDISender::sendPitchBend(int midi_channel, int value) const {
+  for (const auto& dev : output_devices_) {
+    dev->sendMessageNow(MidiMessage::pitchWheel(midi_channel, value));
+  }
+}
+
 void MIDISender::InitDevices_() {
   for (auto idx = 0; idx < MidiOutput::getDevices().size(); idx++) {
     auto dev = MidiOutput::openDevice(idx);

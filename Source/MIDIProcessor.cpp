@@ -46,12 +46,19 @@ void MIDIProcessor::handleIncomingMidiMessage(MidiInput * /*device*/,
       }
     }
     else //regular message
-      for (auto const& listener : listeners_)
+      for (const auto& listener : listeners_)
         listener->handleMidiCC(channel, control, value);
   }
   else if (message.isNoteOn()) {
-    for (auto const& listener : listeners_) {
+    for (const auto& listener : listeners_) {
       listener->handleMidiNote(message.getChannel(), message.getNoteNumber());
+    }
+  }
+  else if (message.isPitchWheel()) {
+    const auto value =
+      static_cast<unsigned short int>(message.getPitchWheelValue());
+    for (const auto& listener : listeners_) {
+      listener->handlePitchWheel(message.getChannel(), value);
     }
   }
 }

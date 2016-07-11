@@ -81,7 +81,6 @@ void LR_IPC_IN::run() {
       wait(kNotConnectedWait);
     } //end if (is not connected)
     else {
-
       char line[kBufferSize + 1] = {'\0'};//plus one for \0 at end
       auto size_read = 0;
       auto can_read_line = true;
@@ -170,8 +169,13 @@ void LR_IPC_IN::processLine(const juce::String& line) {
         const auto& msg = command_map_->getMessageForCommand(command);
         const auto value = static_cast<int>(round(
           ((msg.controller < 128) ? kMaxMIDI : kMaxNRPN) * original_value));
-        if (midi_sender_)
-          midi_sender_->sendCC(msg.channel, msg.controller, value);
+        if (midi_sender_) {
+          switch (msg.messageType) {
+            case MessageType::NOTE: midi_sender_->sendCC(msg.channel, msg.controller, value); break;
+            case MessageType::CC: midi_sender_->sendCC(msg.channel, msg.controller, value); break;
+            case MessageType::PITCHBEND: midi_sender_->sendPitchBend(msg.channel, static_cast<int>(round(original_value * 15300.0))); break;
+          }
+        }
       }
   }
 }

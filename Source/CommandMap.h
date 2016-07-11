@@ -25,8 +25,12 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include <unordered_map>
 #include "../JuceLibraryCode/JuceHeader.h"
 
+enum class MessageType: int {
+  NOTE, CC, PITCHBEND
+};
+
 struct MIDI_Message {
-  bool isCC;
+  MessageType messageType;
   int channel;
   union {
     int controller;
@@ -35,25 +39,26 @@ struct MIDI_Message {
   };
 
   MIDI_Message():
+    messageType(MessageType::NOTE),
     channel(0),
-    isCC(0),
     data(0)
 
   {}
 
-  MIDI_Message(int ch, int dat, bool iscc): channel(ch),
-    isCC(iscc),
+  MIDI_Message(int ch, int dat, MessageType msgType):
+    messageType(msgType),
+    channel(ch),
     data(dat) {}
 
-  bool operator==(const MIDI_Message &other) const noexcept {
-    return (isCC == other.isCC && channel == other.channel && data == other.data);
+  bool operator==(const MIDI_Message &other) const {
+    return (messageType == other.messageType && channel == other.channel && data == other.data);
   }
 
   bool operator<(const MIDI_Message& other) const noexcept {
     if (channel < other.channel) return true;
     if (channel == other.channel) {
       if (data < other.data) return true;
-      if (data == other.data && isCC && !other.isCC) return true;
+      if (data == other.data && messageType < other.messageType) return true;
     }
     return false;
   }
@@ -64,7 +69,8 @@ namespace std {
   template <>
   struct hash<MIDI_Message> {
     std::size_t operator()(const MIDI_Message& k) const noexcept {
-      return (std::hash<bool>()(k.isCC) ^ std::hash<int>()(k.channel) ^
+      return (std::hash<int>()(static_cast<int>(k.messageType)) ^
+        std::hash<int>()(k.channel) ^
         (std::hash<int>()(k.data) << 1));
     }
   };

@@ -64,6 +64,7 @@ void SettingsManager::setPickupEnabled(bool enabled) {
     ptr->sendCommand(String::formatted("Pickup %d\n", enabled));
   }
 }
+
 String SettingsManager::getProfileDirectory() const noexcept {
   return properties_file_->getValue("profile_directory");
 }
@@ -74,6 +75,24 @@ void SettingsManager::setProfileDirectory(const String& profile_directory_name) 
   if (const auto ptr = profile_manager_.lock()) {
     ptr->setProfileDirectory(profile_directory_name);
   }
+}
+
+bool SettingsManager::getContinuousEncoders() const noexcept {
+  return properties_file_->getBoolValue("continuous_encoders_enabled", false);
+}
+
+void SettingsManager::setContinuousEncoders(bool enabled) {
+  properties_file_->setValue("continuous_encoders_enabled", enabled);
+  properties_file_->saveIfNeeded();
+}
+
+String SettingsManager::getPitchMaxValue() const noexcept {
+  return properties_file_->getValue("pitch_max_value", "16383.0");
+}
+
+void SettingsManager::setPitchMaxValue(const String& pitch_max_value) {
+  properties_file_->setValue("pitch_max_value", pitch_max_value);
+  properties_file_->saveIfNeeded();
 }
 
 void SettingsManager::connected() {
