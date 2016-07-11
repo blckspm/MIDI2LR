@@ -121,14 +121,14 @@ void LR_IPC_OUT::handlePitchWheel(int midi_channel, int value) {
     if (!command_map_->messageExistsInMap(message) ||
       command_map_->getCommandforMessage(message) == "Unmapped" ||
       find(LRCommandList::NextPrevProfile.begin(),
-      LRCommandList::NextPrevProfile.end(),
-      command_map_->getCommandforMessage(message)) != LRCommandList::NextPrevProfile.end())
+        LRCommandList::NextPrevProfile.end(),
+        command_map_->getCommandforMessage(message)) != LRCommandList::NextPrevProfile.end())
       return;
 
     auto command_to_send = command_map_->getCommandforMessage(message);
     double computed_value = value;
     computed_value /= 15300.0; // ToDo: make setter for this to push in the setting from the SettingsManager
-    
+
     command_to_send += String::formatted(" %g\n", computed_value);
     {
       std::lock_guard<decltype(command_mutex_)> lock(command_mutex_);
