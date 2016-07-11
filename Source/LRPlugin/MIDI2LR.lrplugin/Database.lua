@@ -49,6 +49,9 @@ local toneCurve = LOC("$$$/AgDevelop/CameraRawPanel/TargetName/ToneCurve=Tone Cu
 local viewModes = LOC("$$$/AgDevelop/Toolbar/ViewModesTool=View Modes")
 local whiteBalance = LOC("$$$/AgCameraRawNamedSettings/CameraRawSettingMapping/WhiteBalance=White Balance")
 
+local coarse = LOC("$$$/AgPrint/CalibrationDialog/Coarse=Coarse")
+local fine = LOC("$$$/AgPrint/CalibrationDialog/Fine=Fine")
+
 --[[----------------------------------------------------------------------------
 
 DataBase structure
@@ -658,6 +661,7 @@ local DataBase = {
   {"profile8",false,false,true,false,true,false,profile.." 8",profiles,"Change to MIDI mapping profile 8. *button*"},
   {"profile9",false,false,true,false,true,false,profile.." 9",profiles,"Change to MIDI mapping profile 9. *button*"},
   {"profile10",false,false,true,false,true,false,profile.." 10",profiles,"Change to MIDI mapping profile 10. *button*"},
+  {"FullRefresh",false,false,true,false,true,false,LOC("$$$/AgLibrary/ViewBar/Sort/RefreshMode/Manual=Manual Update"),profiles,"Force an update of all develop settings in MIDI controller, even if MIDI2LR believes MIDI controller is up-to-date. Useful if controller out of sync with Lightroom (e.g., with layer changes). *button*"},
   {"TrimEnd",true,true,false,false,true,false,"TrimEnd"},
   {"TrimStart",true,true,false,false,true,false,"TrimStart"},
 }

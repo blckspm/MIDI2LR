@@ -40,9 +40,9 @@ class ProfileManager final: public MIDICommandListener,
 public:
   ProfileManager() noexcept;
   virtual ~ProfileManager() {};
-  void Init(std::weak_ptr<LR_IPC_OUT> out,
-    std::shared_ptr<CommandMap> command_map,
-    std::shared_ptr<MIDIProcessor> midi_processor);
+  void Init(std::weak_ptr<LR_IPC_OUT>&& out,
+    std::shared_ptr<CommandMap>& command_map,
+    std::shared_ptr<MIDIProcessor>& midi_processor);
 
   void addListener(ProfileChangeListener *listener);
 
@@ -50,7 +50,7 @@ public:
   void setProfileDirectory(const File& dir);
 
   // returns an array of profile names
-  const StringArray& getMenuItems() const noexcept;
+  const std::vector<juce::String>& getMenuItems() const noexcept;
 
   // switches to a profile defined by an index
   void switchToProfile(int profileIdx);
@@ -84,12 +84,12 @@ private:
   ProfileManager(ProfileManager const&) = delete;
   void operator=(ProfileManager const&) = delete;
 
-  std::vector<ProfileChangeListener *> listeners_;
   File profile_location_;
   int current_profile_index_{0};
   std::shared_ptr<CommandMap> command_map_{nullptr};
+  std::vector<ProfileChangeListener *> listeners_;
   std::weak_ptr<LR_IPC_OUT> lr_ipc_out_;
-  StringArray profiles_;
+  std::vector<juce::String> profiles_;
   SWITCH_STATE switch_state_;
 };
 

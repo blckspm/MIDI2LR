@@ -34,16 +34,16 @@ MainContentComponent::MainContentComponent(): ResizableLayout{this} {}
 MainContentComponent::~MainContentComponent() {}
 
 void MainContentComponent::Init(std::shared_ptr<CommandMap>& command_map,
-  std::weak_ptr<LR_IPC_IN>& lr_ipc_in,
-  std::weak_ptr<LR_IPC_OUT>& lr_ipc_out,
+  std::weak_ptr<LR_IPC_IN>&& lr_ipc_in,
+  std::weak_ptr<LR_IPC_OUT>&& lr_ipc_out,
   std::shared_ptr<MIDIProcessor>& midi_processor,
   std::shared_ptr<ProfileManager>& profile_manager,
   std::shared_ptr<SettingsManager>& settings_manager,
   std::shared_ptr<MIDISender>& midi_sender) {
   //copy the pointers
   command_map_ = command_map;
-  lr_ipc_in_ = lr_ipc_in;
-  lr_ipc_out_ = lr_ipc_out;
+  lr_ipc_in_ = std::move(lr_ipc_in);
+  lr_ipc_out_ = std::move(lr_ipc_out);
   settings_manager_ = settings_manager;
   midi_processor_ = midi_processor;
   midi_sender_ = midi_sender;
@@ -56,7 +56,7 @@ void MainContentComponent::Init(std::shared_ptr<CommandMap>& command_map,
     midi_processor->addMIDICommandListener(this);
   }
 
-  if (auto ptr = lr_ipc_out_.lock()) {
+  if (const auto ptr = lr_ipc_out_.lock()) {
       // Add ourselves as a listener for LR_IPC_OUT events
     ptr->addListener(this);
   }
@@ -220,14 +220,14 @@ void MainContentComponent::buttonClicked(Button* button) {
       // Re-enumerate MIDI IN and OUT devices
 
     if (midi_processor_) {
-      midi_processor_->rescanDevices();
+      midi_processor_->RescanDevices();
     }
 
     if (midi_sender_) {
-      midi_sender_->rescanDevices();
+      midi_sender_->RescanDevices();
     }
     // Send new CC parameters to MIDI Out devices
-    if (auto ptr = lr_ipc_in_.lock()) {
+    if (const auto ptr = lr_ipc_in_.lock()) {
       ptr->refreshMIDIOutput();
     }
   }
@@ -290,7 +290,7 @@ void MainContentComponent::buttonClicked(Button* button) {
         const auto new_profile = browser.getSelectedFile(0);
         const auto command = String{"ChangedToFullPath "} +new_profile.getFullPathName() + "\n";
 
-        if (auto ptr = lr_ipc_out_.lock()) {
+        if (const auto ptr = lr_ipc_out_.lock()) {
           ptr->sendCommand(command);
         }
         profile_name_label_.setText(new_profile.getFileName(),
@@ -324,7 +324,7 @@ void MainContentComponent::profileChanged(XmlElement* xml_element, const String&
 //  _systemTrayComponent.showInfoBubble(filename, "Profile loaded");
 
     // Send new CC parameters to MIDI Out devices
-  if (auto ptr = lr_ipc_in_.lock()) {
+  if (const auto ptr = lr_ipc_in_.lock()) {
     ptr->refreshMIDIOutput();
   }
 }

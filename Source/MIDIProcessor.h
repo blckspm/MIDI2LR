@@ -43,16 +43,17 @@ public:
   void addMIDICommandListener(MIDICommandListener*);
 
   // re-enumerates MIDI IN devices
-  void rescanDevices();
+  void RescanDevices();
 
 private:
   // overridden from MidiInputCallback
   void handleIncomingMidiMessage(MidiInput*, const MidiMessage&) override;
 
   void InitDevices_();
-  std::vector<MIDICommandListener *> listeners_;
-  OwnedArray<MidiInput> devices_;
+
   NRPN_Filter nrpn_filter_;
+  std::vector<std::unique_ptr<MidiInput>> devices_;
+  std::vector<MIDICommandListener *> listeners_;
 };
 
 #endif  // MIDIPROCESSOR_H_INCLUDED

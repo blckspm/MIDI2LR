@@ -23,9 +23,11 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "LRCommands.h"
 
 namespace {
-  constexpr auto kConnectTimeOut = 100; //100 msec timeout for connecting
-  constexpr auto kLrOutPort = 58763;
   constexpr auto kReadyWait = 0; //get out of read quickly
+  constexpr auto kConnectTryTime = 100;
+  constexpr auto kLrOutPort = 58763;
+  constexpr auto kMaxMIDI = 127.0;
+  constexpr auto kMaxNRPN = 16383.0;
 }
 
 LR_IPC_OUT::LR_IPC_OUT(): StreamingSocket() {}
@@ -79,7 +81,7 @@ void LR_IPC_OUT::handleMidiCC(int midi_channel, int controller, int value) {
 
     auto command_to_send = command_map_->getCommandforMessage(message);
     double computed_value = value;
-    computed_value /= (controller < 128) ? 127.0 : 16383.0;
+    computed_value /= (controller < 128) ? kMaxMIDI : kMaxNRPN;
 
     command_to_send += String::formatted(" %g\n", computed_value);
     {
@@ -146,7 +148,7 @@ void LR_IPC_OUT::timerCallback() {
   {
     std::lock_guard<decltype(timer_mutex_)> lock(timer_mutex_);
     if (!timer_off_ && !isConnected() && (++seconds_disconnected_ > kReconnectDelay))
-      connect("127.0.0.1", kLrOutPort, kConnectTimeOut);
+      connect("127.0.0.1", kLrOutPort, kConnectTryTime);
     else
       seconds_disconnected_ = 0;
   }
