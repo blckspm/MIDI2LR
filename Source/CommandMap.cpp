@@ -75,9 +75,9 @@ void CommandMap::toXMLDocument(File& file) const {
       setting->setAttribute("channel", map_entry.first.channel);
 	  switch (map_entry.first.messageType)
 	  {
-		  case NOTE: setting->setAttribute("note", map_entry.first.pitch);                break;
-		  case CC: setting->setAttribute("controller", map_entry.first.controller);       break;
-		  case PITCHBEND: setting->setAttribute("pitchbend", map_entry.first.controller); break;
+      case MessageType::NOTE: setting->setAttribute("note", map_entry.first.pitch);                break;
+		  case MessageType::CC: setting->setAttribute("controller", map_entry.first.controller);       break;
+		  case MessageType::PITCHBEND: setting->setAttribute("pitchbend", map_entry.first.controller); break;
 	  }
 	  setting->setAttribute("command_string", map_entry.second);
       root.addChildElement(setting);

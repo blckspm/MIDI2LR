@@ -70,7 +70,7 @@ void LR_IPC_OUT::sendCommand(const String &command) {
 }
 
 void LR_IPC_OUT::handleMidiCC(int midi_channel, int controller, int value) {
-  MIDI_Message message{midi_channel, controller, CC};
+  MIDI_Message message{midi_channel, controller, MessageType::CC};
 
   if (command_map_) {
     if (!command_map_->messageExistsInMap(message) ||
@@ -94,7 +94,7 @@ void LR_IPC_OUT::handleMidiCC(int midi_channel, int controller, int value) {
 }
 
 void LR_IPC_OUT::handleMidiNote(int midi_channel, int note) {
-  MIDI_Message message{midi_channel, note, NOTE};
+  MIDI_Message message{midi_channel, note, MessageType::NOTE};
 
   if (command_map_) {
     if (!command_map_->messageExistsInMap(message) ||
@@ -115,7 +115,7 @@ void LR_IPC_OUT::handleMidiNote(int midi_channel, int note) {
 }
 
 void LR_IPC_OUT::handlePitchWheel(int midi_channel, int value) {
-  MIDI_Message message{midi_channel, midi_channel, PITCHBEND};
+  MIDI_Message message{midi_channel, midi_channel, MessageType::PITCHBEND};
 
   if (command_map_) {
     if (!command_map_->messageExistsInMap(message) ||
