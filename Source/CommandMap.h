@@ -68,12 +68,11 @@ struct MIDI_Message {
 namespace std {
   template <>
   struct hash<MIDI_Message> {
-    using MTypeType = std::underlying_type<MessageType>::type;
+    using MessageType_t = std::underlying_type<MessageType>::type;
     std::size_t operator()(const MIDI_Message& k) const noexcept {
       return
-        (std::hash<MTypeType>()(static_cast<MTypeType>(k.messageType)) ^
-          std::hash<int>()(k.channel) ^
-          (std::hash<int>()(k.data) << 1));
+        std::hash<MessageType_t>()(static_cast<MessageType_t>(k.messageType) << 4) ^
+          std::hash<int>()(k.channel) ^ std::hash<int>()(k.data << 2);
     }
   };
 
