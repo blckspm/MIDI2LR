@@ -19,6 +19,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
   ==============================================================================
 */
 #include "CommandTableModel.h"
+#include <algorithm>
 #include "LRCommands.h"
 
 CommandTableModel::CommandTableModel() noexcept {}
@@ -50,7 +51,7 @@ int CommandTableModel::getNumRows() {
   return commands_.size();
 }
 
-void CommandTableModel::paintRowBackground(Graphics &g, int /*rowNumber*/,
+void CommandTableModel::paintRowBackground(juce::Graphics& g, int /*rowNumber*/,
   int /*width*/, int /*height*/, bool row_is_selected) {
   //This must draw the background behind one of the rows in the table.
 
@@ -60,10 +61,10 @@ void CommandTableModel::paintRowBackground(Graphics &g, int /*rowNumber*/,
   // Note that the rowNumber value may be greater than the number of rows in your
   // list, so be careful that you don't assume it's less than getNumRows().
   if (row_is_selected)
-    g.fillAll(Colours::lightblue);
+    g.fillAll(juce::Colours::lightblue);
 }
 
-void CommandTableModel::paintCell(Graphics &g, int row_number, int column_id,
+void CommandTableModel::paintCell(juce::Graphics& g, int row_number, int column_id,
   int width, int height, bool /*rowIsSelected*/) {
   //This must draw one of the cells.
 
@@ -75,9 +76,10 @@ void CommandTableModel::paintCell(Graphics &g, int row_number, int column_id,
 
   int value = 0;
   int channel = 0;
-  String formatStr;
+  juce::String formatStr;
 
-  g.setColour(Colours::black);
+  g.setColour(juce::Colours::black);
+
   g.setFont(12.0f);
 
   if (column_id == 1) // write the MIDI message in the MIDI command column
@@ -99,12 +101,12 @@ void CommandTableModel::paintCell(Graphics &g, int row_number, int column_id,
         value = commands_[row_number].controller;
         break;
     }
-    g.drawText(String::formatted(formatStr, channel, value), 0, 0, width, height, Justification::centred);
+    g.drawText(juce::String::formatted(formatStr, channel, value), 0, 0, width, height, Justification::centred);
   }
 }
 
-Component *CommandTableModel::refreshComponentForCell(int row_number,
-  int column_id, bool /*isRowSelected*/, Component *existing_component_to_update) {
+juce::Component *CommandTableModel::refreshComponentForCell(int row_number,
+  int column_id, bool /*isRowSelected*/, juce::Component *existing_component_to_update) {
     //This is used to create or update a custom component to go in a cell.
 
     // Any cell may contain a custom component, or can just be drawn with the
@@ -177,7 +179,7 @@ void CommandTableModel::removeAllRows() {
   }
 }
 
-void CommandTableModel::buildFromXml(const XmlElement * const root) {
+void CommandTableModel::buildFromXml(const juce::XmlElement * const root) {
   if (root->getTagName().compare("settings") != 0)
     return;
 
@@ -197,7 +199,7 @@ void CommandTableModel::buildFromXml(const XmlElement * const root) {
       }
       else {
         command_map_->addCommandforMessage(setting->
-          getStringAttribute("command_string"), message);
+          getStringAttribute("command_string").toStdString(), message);
       }
     }
     else if (setting->hasAttribute("note")) {
@@ -212,7 +214,7 @@ void CommandTableModel::buildFromXml(const XmlElement * const root) {
       }
       else {
         command_map_->addCommandforMessage(setting->
-          getStringAttribute("command_string"), note);
+          getStringAttribute("command_string").toStdString(), note);
       }
     }
     else if (setting->hasAttribute("pitchbend")) {
@@ -222,7 +224,7 @@ void CommandTableModel::buildFromXml(const XmlElement * const root) {
       MessageType::PITCHBEND};
 
       addRow(note.channel, note.pitch, MessageType::PITCHBEND);
-      command_map_->addCommandforMessage(setting->getStringAttribute("command_string"), note);
+      command_map_->addCommandforMessage(setting->getStringAttribute("command_string").toStdString(), note);
     }
     setting = setting->getNextElement();
   }

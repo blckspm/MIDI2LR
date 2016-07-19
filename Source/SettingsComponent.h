@@ -22,42 +22,46 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SETTINGSCOMPONENT_H_INCLUDED
 #define SETTINGSCOMPONENT_H_INCLUDED
 
+#include <memory>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ResizableLayout.h"
 #include "SettingsManager.h"
 
 class SettingsComponent final:
-  public Component,
-  private ButtonListener,
+
+  public juce::Component,
+  private juce::ButtonListener,
   private ResizableLayout,
-  private Slider::Listener,
-  private TextEditor::Listener {
+  private juce::Slider::Listener,
+  private juce::TextEditor::Listener {
+
 public:
   SettingsComponent();
   ~SettingsComponent();
   void Init(std::weak_ptr<SettingsManager>&& settings_manager);
 private:
-  void paint(Graphics&) override;
-  virtual void buttonClicked(Button* button) override;
-  virtual void sliderValueChanged(Slider* slider) override;
+
+  void paint(juce::Graphics&) override;
+  virtual void buttonClicked(juce::Button* button) override;
+  virtual void sliderValueChanged(juce::Slider* slider) override;
   virtual void textEditorTextChanged(TextEditor &editor) override;
 
-  GroupComponent autohide_group_{};
-  GroupComponent pickup_group_{};
-  GroupComponent profile_group_{};
-  GroupComponent controllers_group_{};
-  Label autohide_explain_label_{};
-  Label pickup_label_{"PickupLabel", ""};
-  Label profile_location_label_{"Profile Label"};
-  Label continuous_label_{"ContinuousLabel", ""};
-  Label maxpitch_label_{"MaxPitchLabel", ""};
-  Slider autohide_setting_;
+  juce::GroupComponent autohide_group_{};
+  juce::GroupComponent pickup_group_{};
+  juce::GroupComponent profile_group_{};
+  juce::GroupComponent controllers_group_{};
+  juce::Label autohide_explain_label_{};
+  juce::Label pickup_label_{"PickupLabel", ""};
+  juce::Label profile_location_label_{"Profile Label"};
+  juce::Label continuous_label_{"ContinuousLabel", ""};
+  juce::Label maxpitch_label_{"MaxPitchLabel", ""};
+  juce::Slider autohide_setting_;
   std::weak_ptr<SettingsManager> settings_manager_;
-  TextButton profile_location_button_{"Choose Profile Folder"};
-  TextButton apply_button_{"Apply"};
-  ToggleButton pickup_enabled_{"Enable Pickup Mode"};
-  ToggleButton continuous_enabled_{"Continuous Encoder Mode"};
-  TextEditor pitch_max_value_;
+  juce::TextButton profile_location_button_{"Choose Profile Folder"};
+  juce::TextButton apply_button_{"Apply"};
+  juce::ToggleButton pickup_enabled_{"Enable Pickup Mode"};
+  juce::ToggleButton continuous_enabled_{"Continuous Encoder Mode"};
+  juce::TextEditor pitch_max_value_;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SettingsComponent)
 };
