@@ -1,0 +1,462 @@
+Key1	Keyboard Shortcuts for User	Key 1
+Key2	Keyboard Shortcuts for User	Key 2
+Key3	Keyboard Shortcuts for User	Key 3
+Key4	Keyboard Shortcuts for User	Key 4
+Key5	Keyboard Shortcuts for User	Key 5
+Key6	Keyboard Shortcuts for User	Key 6
+Key7	Keyboard Shortcuts for User	Key 7
+Key8	Keyboard Shortcuts for User	Key 8
+Key9	Keyboard Shortcuts for User	Key 9
+Key10	Keyboard Shortcuts for User	Key 10
+Key11	Keyboard Shortcuts for User	Key 11
+Key12	Keyboard Shortcuts for User	Key 12
+Key13	Keyboard Shortcuts for User	Key 13
+Key14	Keyboard Shortcuts for User	Key 14
+Key15	Keyboard Shortcuts for User	Key 15
+Key16	Keyboard Shortcuts for User	Key 16
+Key17	Keyboard Shortcuts for User	Key 17
+Key18	Keyboard Shortcuts for User	Key 18
+Key19	Keyboard Shortcuts for User	Key 19
+Key20	Keyboard Shortcuts for User	Key 20
+Key21	Keyboard Shortcuts for User	Key 21
+Key22	Keyboard Shortcuts for User	Key 22
+Key23	Keyboard Shortcuts for User	Key 23
+Key24	Keyboard Shortcuts for User	Key 24
+Key25	Keyboard Shortcuts for User	Key 25
+Key26	Keyboard Shortcuts for User	Key 26
+Key27	Keyboard Shortcuts for User	Key 27
+Key28	Keyboard Shortcuts for User	Key 28
+Key29	Keyboard Shortcuts for User	Key 29
+Key30	Keyboard Shortcuts for User	Key 30
+Key31	Keyboard Shortcuts for User	Key 31
+Key32	Keyboard Shortcuts for User	Key 32
+Key33	Keyboard Shortcuts for User	Key 33
+Key34	Keyboard Shortcuts for User	Key 34
+Key35	Keyboard Shortcuts for User	Key 35
+Key36	Keyboard Shortcuts for User	Key 36
+Key37	Keyboard Shortcuts for User	Key 37
+Key38	Keyboard Shortcuts for User	Key 38
+Key39	Keyboard Shortcuts for User	Key 39
+Key40	Keyboard Shortcuts for User	Key 40
+ShoVwgrid	General	Primary Display Grid
+ShoVwloupe	General	Primary Display Loupe
+ShoVwcompare	General	Primary Display Compare
+ShoVwsurvey	General	Primary Display Survey
+ToggleZoomOffOn	General	Enable/Disable Zoom
+ZoomInLargeStep	General	Zoom In
+ZoomInSmallStep	General	Zoom In Some
+ZoomOutSmallStep	General	Zoom Out Some
+ZoomOutLargeStep	General	Zoom Out
+Select1Left	General	Add to Selection Left
+Select1Right	General	Add to Selection Right
+Next	General	Next Photo
+Prev	General	Previous Photo
+SwToMlibrary	Library	Show Library
+Pick	Library	Set Pick Flag
+Reject	Library	Set Rejected Flag
+RemoveFlag	Library	Unflagged
+SetRating0	Library	0 Stars
+SetRating1	Library	1 Star
+SetRating2	Library	2 Stars
+SetRating3	Library	3 Stars
+SetRating4	Library	4 Stars
+SetRating5	Library	5 Stars
+IncreaseRating	Library	Increase Rating
+DecreaseRating	Library	Decrease Rating
+ToggleBlue	Library	Label Blue Enable/Disable
+ToggleGreen	Library	Label Green Enable/Disable
+ToggleRed	Library	Label Red Enable/Disable
+TogglePurple	Library	Label Purple Enable/Disable
+ToggleYellow	Library	Label Yellow Enable/Disable
+ShoVwpeople	Library	Primary Display People
+SwToMdevelop	Develop	Show Develop
+CopySettings	Develop	Copy Settings
+PasteSettings	Develop	Paste Settings
+PasteSelectedSettings	Develop	Paste Selected Settings
+VirtualCopy	Develop	Create Virtual Copy
+ResetAll	Develop	Reset Settings
+ResetLast	Develop	Reset Last Modified
+IncrementLastDevelopParameter	Develop	Increase Last Modified
+DecrementLastDevelopParameter	Develop	Decrease Last Modified
+Undo	Develop	Undo
+Redo	Develop	Redo
+ShoVwdevelop_before_after_horiz	Develop	Primary Display Before/After Left/Right
+ShoVwdevelop_before_after_vert	Develop	Primary Display Before/After Top/Bottom
+ShoVwdevelop_before	Develop	Primary Display Before
+ShoVwdevelop_loupe	Develop	Primary Display Loupe
+RevealPanelAdjust	Basic Tone	Show Basic Tone
+WhiteBalanceAs_Shot	Basic Tone	White Balance As Shot
+WhiteBalanceAuto	Basic Tone	White Balance Auto
+WhiteBalanceCloudy	Basic Tone	White Balance Cloudy
+WhiteBalanceDaylight	Basic Tone	White Balance Daylight
+WhiteBalanceFlash	Basic Tone	White Balance Flash
+WhiteBalanceFluorescent	Basic Tone	White Balance Fluorescent
+WhiteBalanceShade	Basic Tone	White Balance Shade
+WhiteBalanceTungsten	Basic Tone	White Balance Tungsten
+Temperature	Basic Tone	Temperature
+Tint	Basic Tone	Tint
+Exposure	Basic Tone	Exposure
+Contrast	Basic Tone	Contrast
+Highlights	Basic Tone	Highlights (Highlight Recovery in PV2003 and PV2010)
+Brightness	Basic Tone	Brightness
+Shadows	Basic Tone	Shadows (Fill Light in PV2003 and PV2010)
+Whites	Basic Tone	Whites (no effect in PV2003 and PV2010)
+Blacks	Basic Tone	Blacks
+Clarity	Basic Tone	Clarity
+Vibrance	Basic Tone	Vibrance
+Saturation	Basic Tone	Saturation
+ResetTemperature	Basic Tone	Reset Temperature
+ResetTint	Basic Tone	Reset Tint
+ResetExposure	Basic Tone	Reset Exposure
+ResetContrast	Basic Tone	Reset Contrast
+ResetHighlights	Basic Tone	Reset Highlights
+ResetShadows	Basic Tone	Reset Shadows
+ResetWhites	Basic Tone	Reset Whites
+ResetBlacks	Basic Tone	Reset Blacks
+ResetClarity	Basic Tone	Reset Clarity
+ResetVibrance	Basic Tone	Reset Vibrance
+ResetSaturation	Basic Tone	Reset Saturation
+RevealPanelTone	Tone Curve	Show Tone Curve
+EnableToneCurve	Tone Curve	Enable Tone Curve
+ParametricDarks	Tone Curve	Dark Tones
+ParametricLights	Tone Curve	Light Tones
+ParametricShadows	Tone Curve	Shadow Tones
+ParametricHighlights	Tone Curve	Highlight Tones
+ParametricShadowSplit	Tone Curve	Shadow Split
+ParametricMidtoneSplit	Tone Curve	Midtone Split
+ParametricHighlightSplit	Tone Curve	Highlight Split
+ResetParametricDarks	Tone Curve	Reset Dark Tones
+ResetParametricLights	Tone Curve	Reset Light Tones
+ResetParametricShadows	Tone Curve	Reset Shadow Tones
+ResetParametricHighlights	Tone Curve	Reset Highlight Tones
+ResetParametricShadowSplit	Tone Curve	Reset Shadow Split
+ResetParametricMidtoneSplit	Tone Curve	Reset Midtone Split
+ResetParametricHighlightSplit	Tone Curve	Reset Highlight Split
+RevealPanelMixer	Color Adjustments	Show Color Adjustments
+EnableColorAdjustments	Color Adjustments	Enable Color Adjustments
+SaturationAdjustmentRed	Color Adjustments	Saturation Adjustment Red
+SaturationAdjustmentOrange	Color Adjustments	Saturation Adjustment Orange
+SaturationAdjustmentYellow	Color Adjustments	Saturation Adjustment Yellow
+SaturationAdjustmentGreen	Color Adjustments	Saturation Adjustment Green
+SaturationAdjustmentAqua	Color Adjustments	Saturation Adjustment Aqua
+SaturationAdjustmentBlue	Color Adjustments	Saturation Adjustment Blue
+SaturationAdjustmentPurple	Color Adjustments	Saturation Adjustment Purple
+SaturationAdjustmentMagenta	Color Adjustments	Saturation Adjustment Magenta
+HueAdjustmentRed	Color Adjustments	Hue Adjustment Red
+HueAdjustmentOrange	Color Adjustments	Hue Adjustment Orange
+HueAdjustmentYellow	Color Adjustments	Hue Adjustment Yellow
+HueAdjustmentGreen	Color Adjustments	Hue Adjustment Green
+HueAdjustmentAqua	Color Adjustments	Hue Adjustment Aqua
+HueAdjustmentBlue	Color Adjustments	Hue Adjustment Blue
+HueAdjustmentPurple	Color Adjustments	Hue Adjustment Purple
+HueAdjustmentMagenta	Color Adjustments	Hue Adjustment Magenta
+LuminanceAdjustmentRed	Color Adjustments	Luminance Adjustment Red
+LuminanceAdjustmentOrange	Color Adjustments	Luminance Adjustment Orange
+LuminanceAdjustmentYellow	Color Adjustments	Luminance Adjustment Yellow
+LuminanceAdjustmentGreen	Color Adjustments	Luminance Adjustment Green
+LuminanceAdjustmentAqua	Color Adjustments	Luminance Adjustment Aqua
+LuminanceAdjustmentBlue	Color Adjustments	Luminance Adjustment Blue
+LuminanceAdjustmentPurple	Color Adjustments	Luminance Adjustment Purple
+LuminanceAdjustmentMagenta	Color Adjustments	Luminance Adjustment Magenta
+ConvertToGrayscale	Color Adjustments	Convert to Grayscale
+EnableGrayscaleMix	Color Adjustments	Enable Grayscale Mix
+GrayMixerRed	Color Adjustments	Gray Mixer Red
+GrayMixerOrange	Color Adjustments	Gray Mixer Orange
+GrayMixerYellow	Color Adjustments	Gray Mixer Yellow
+GrayMixerGreen	Color Adjustments	Gray Mixer Green
+GrayMixerAqua	Color Adjustments	Gray Mixer Aqua
+GrayMixerBlue	Color Adjustments	Gray Mixer Blue
+GrayMixerPurple	Color Adjustments	Gray Mixer Purple
+GrayMixerMagenta	Color Adjustments	Gray Mixer Magenta
+ResetSaturationAdjustmentRed	Reset Color Adjustments	Reset Saturation Adjustment Red
+ResetSaturationAdjustmentOrange	Reset Color Adjustments	Reset Saturation Adjustment Orange
+ResetSaturationAdjustmentYellow	Reset Color Adjustments	Reset Saturation Adjustment Yellow
+ResetSaturationAdjustmentGreen	Reset Color Adjustments	Reset Saturation Adjustment Green
+ResetSaturationAdjustmentAqua	Reset Color Adjustments	Reset Saturation Adjustment Aqua
+ResetSaturationAdjustmentBlue	Reset Color Adjustments	Reset Saturation Adjustment Blue
+ResetSaturationAdjustmentPurple	Reset Color Adjustments	Reset Saturation Adjustment Purple
+ResetSaturationAdjustmentMagenta	Reset Color Adjustments	Reset Saturation Adjustment Magenta
+ResetHueAdjustmentRed	Reset Color Adjustments	Reset Hue Adjustment Red
+ResetHueAdjustmentOrange	Reset Color Adjustments	Reset Hue Adjustment Orange
+ResetHueAdjustmentYellow	Reset Color Adjustments	Reset Hue Adjustment Yellow
+ResetHueAdjustmentGreen	Reset Color Adjustments	Reset Hue Adjustment Green
+ResetHueAdjustmentAqua	Reset Color Adjustments	Reset Hue Adjustment Aqua
+ResetHueAdjustmentBlue	Reset Color Adjustments	Reset Hue Adjustment Blue
+ResetHueAdjustmentPurple	Reset Color Adjustments	Reset Hue Adjustment Purple
+ResetHueAdjustmentMagenta	Reset Color Adjustments	Reset Hue Adjustment Magenta
+ResetLuminanceAdjustmentRed	Reset Color Adjustments	Reset Luminance Adjustment Red
+ResetLuminanceAdjustmentOrange	Reset Color Adjustments	Reset Luminance Adjustment Orange
+ResetLuminanceAdjustmentYellow	Reset Color Adjustments	Reset Luminance Adjustment Yellow
+ResetLuminanceAdjustmentGreen	Reset Color Adjustments	Reset Luminance Adjustment Green
+ResetLuminanceAdjustmentAqua	Reset Color Adjustments	Reset Luminance Adjustment Aqua
+ResetLuminanceAdjustmentBlue	Reset Color Adjustments	Reset Luminance Adjustment Blue
+ResetLuminanceAdjustmentPurple	Reset Color Adjustments	Reset Luminance Adjustment Purple
+ResetLuminanceAdjustmentMagenta	Reset Color Adjustments	Reset Luminance Adjustment Magenta
+ResetGrayMixerRed	Reset Color Adjustments	Reset Gray Mixer Red
+ResetGrayMixerOrange	Reset Color Adjustments	Reset Gray Mixer Orange
+ResetGrayMixerYellow	Reset Color Adjustments	Reset Gray Mixer Yellow
+ResetGrayMixerGreen	Reset Color Adjustments	Reset Gray Mixer Green
+ResetGrayMixerAqua	Reset Color Adjustments	Reset Gray Mixer Aqua
+ResetGrayMixerBlue	Reset Color Adjustments	Reset Gray Mixer Blue
+ResetGrayMixerPurple	Reset Color Adjustments	Reset Gray Mixer Purple
+ResetGrayMixerMagenta	Reset Color Adjustments	Reset Gray Mixer Magenta
+RevealPanelSplit	Split Toning	Show Split Toning
+EnableSplitToning	Split Toning	Enable Split Toning
+SplitToningShadowHue	Split Toning	Shadow Hue
+SplitToningShadowSaturation	Split Toning	Shadow Saturation
+SplitToningHighlightHue	Split Toning	Highlight Hue
+SplitToningHighlightSaturation	Split Toning	Highlight Saturation
+SplitToningBalance	Split Toning	Split Toning Balance
+ResetSplitToningShadowHue	Split Toning	Reset Shadow Hue
+ResetSplitToningShadowSaturation	Split Toning	Reset Shadow Saturation
+ResetSplitToningHighlightHue	Split Toning	Reset Highlight Hue
+ResetSplitToningHighlightSaturation	Split Toning	Reset Highlight Saturation
+ResetSplitToningBalance	Split Toning	Reset Split Toning Balance
+RevealPanelDetail	Detail	Show Detail
+EnableDetail	Detail	Enable Detail
+Sharpness	Detail	Sharpness
+SharpenRadius	Detail	Sharpen Radius
+SharpenDetail	Detail	Sharpen Detail
+SharpenEdgeMasking	Detail	Sharpen Edge Masking
+LuminanceSmoothing	Detail	Luminance Smoothing
+LuminanceNoiseReductionDetail	Detail	Luminance Detail
+LuminanceNoiseReductionContrast	Detail	Luminance Contrast
+ColorNoiseReduction	Detail	Color Noise Reduction
+ColorNoiseReductionDetail	Detail	Color Noise Reduction Detail
+ColorNoiseReductionSmoothness	Detail	Color Noise Reduction Smoothness
+ResetSharpness	Detail	Reset Sharpness
+ResetSharpenRadius	Detail	Reset Sharpen Radius
+ResetSharpenDetail	Detail	Reset Sharpen Detail
+ResetSharpenEdgeMasking	Detail	Reset Sharpen Edge Masking
+ResetLuminanceSmoothing	Detail	Reset Luminance Smoothing
+ResetLuminanceNoiseReductionDetail	Detail	Reset Luminance Detail
+ResetLuminanceNoiseReductionContrast	Detail	Reset Luminance Contrast
+ResetColorNoiseReduction	Detail	Reset Color Noise Reduction
+ResetColorNoiseReductionDetail	Detail	Reset Color Noise Reduction Detail
+ResetColorNoiseReductionSmoothness	Detail	Reset Color Noise Reduction Smoothness
+RevealPanelLens	Lens Corrections	Show Lens Corrections
+EnableLensCorrections	Lens Corrections	Enable Lens Corrections
+UprightOff	Lens Corrections	Perspective Correction Off
+UprightAuto	Lens Corrections	Perspective Correction Auto
+UprightLevel	Lens Corrections	Perspective Correction Level
+UprightVertical	Lens Corrections	Perspective Correction Vertical
+UprightFull	Lens Corrections	Perspective Correction Full
+ResetPerspectiveUpright	Lens Corrections	Reset Upright Settings
+LensProfileDistortionScale	Lens Corrections	Lens Profile Distortion Scale
+LensProfileChromaticAberrationScale	Lens Corrections	Lens Profile Chromatic Aberration Scale
+LensProfileVignettingScale	Lens Corrections	Lens Profile Vignetting Scale
+ResetLensProfileDistortionScale	Lens Corrections	Reset Lens Profile Distortion Scale
+ResetLensProfileChromaticAberrationScale	Lens Corrections	Reset Lens Profile Chromatic Aberration Scale
+ResetLensProfileVignettingScale	Lens Corrections	Reset Lens Profile Vignetting Scale
+DefringePurpleAmount	Lens Corrections	Defringe Purple Amount
+DefringePurpleHueLo	Lens Corrections	Defringe Purple Hue - Low
+DefringePurpleHueHi	Lens Corrections	Defringe Purple Hue - High
+DefringeGreenAmount	Lens Corrections	Defringe Green Amount
+DefringeGreenHueLo	Lens Corrections	Defringe Green Hue - Low
+DefringeGreenHueHi	Lens Corrections	Defringe Green Hue - High
+ResetDefringePurpleAmount	Lens Corrections	Reset Defringe Purple Amount
+ResetDefringePurpleHueLo	Lens Corrections	Reset Defringe Purple Hue - Low
+ResetDefringePurpleHueHi	Lens Corrections	Reset Defringe Purple Hue - High
+ResetDefringeGreenAmount	Lens Corrections	Reset Defringe Green Amount
+ResetDefringeGreenHueLo	Lens Corrections	Reset Defringe Green Hue - Low
+ResetDefringeGreenHueHi	Lens Corrections	Reset Defringe Green Hue - High
+LensManualDistortionAmount	Lens Corrections	Lens Manual Distortion Amount
+PerspectiveVertical	Lens Corrections	Perspective Vertical
+PerspectiveHorizontal	Lens Corrections	Perspective Horizontal
+PerspectiveRotate	Lens Corrections	Perspective Rotate
+PerspectiveScale	Lens Corrections	Perspective Scale
+PerspectiveAspect	Lens Corrections	Perspective Aspect
+PerspectiveX 	Lens Corrections	Perspective X
+PerspectiveY 	Lens Corrections	Perspective Y
+VignetteAmount	Lens Corrections	Vignette Amount
+VignetteMidpoint	Lens Corrections	Vignette Midpoint
+ResetLensManualDistortionAmount	Lens Corrections	Reset Lens Manual Distortion Amount
+ResetPerspectiveVertical	Lens Corrections	Reset Perspective Vertical
+ResetPerspectiveHorizontal	Lens Corrections	Reset Perspective Horizontal
+ResetPerspectiveRotate	Lens Corrections	Reset Perspective Rotate
+ResetPerspectiveScale	Lens Corrections	Reset Perspective Scale
+ResetPerspectiveAspect	Lens Corrections	Reset Perspective Aspect
+ResetPerspectiveX	Lens Corrections	Reset Perspective X
+ResetPerspectiveY	Lens Corrections	Reset Perspective Y
+ResetVignetteAmount	Lens Corrections	Reset Vignette Amount
+ResetVignetteMidpoint	Lens Corrections	Reset Vignette Midpoint
+RevealPanelEffects	Effects	Show Effects
+EnableEffects	Effects	Enable Effects
+Dehaze	Effects	Dehaze Amount
+PostCropVignetteAmount	Effects	Post Crop Vignette Amount
+PostCropVignetteMidpoint	Effects	Post Crop Vignette Midpoint
+PostCropVignetteFeather	Effects	Post Crop Vignette Feather
+PostCropVignetteRoundness	Effects	Post Crop Vignette Roundness
+PostCropVignetteStyle	Effects	Post Crop Vignette Style
+PostCropVignetteHighlightContrast	Effects	Post Crop Vignette Highlight Contrast
+GrainAmount	Effects	Grain Amount
+GrainSize	Effects	Grain Size
+GrainFrequency	Effects	Grain Roughness
+ResetDehaze	Effects	Reset Dehaze Amount
+ResetPostCropVignetteAmount	Effects	Reset Post Crop Vignette Amount
+ResetPostCropVignetteMidpoint	Effects	Reset Post Crop Vignette Midpoint
+ResetPostCropVignetteFeather	Effects	Reset Post Crop Vignette Feather
+ResetPostCropVignetteRoundness	Effects	Reset Post Crop Vignette Roundness
+ResetPostCropVignetteStyle	Effects	Reset Post Crop Vignette Style
+ResetPostCropVignetteHighlightContrast	Effects	Reset Post Crop Vignette Highlight Contrast
+ResetGrainAmount	Effects	Reset Grain Amount
+ResetGrainSize	Effects	Reset Grain Size
+ResetGrainFrequency	Effects	Reset Grain Roughness
+RevealPanelCalibrate	Calibration	Show Calibration
+EnableCalibration	Calibration	Enable Calibration
+Profile_Adobe_Standard	Calibration	Adobe Standard
+Profile_Camera_Clear	Calibration	Camera Clear
+Profile_Camera_Darker_Skin_Tone	Calibration	Camera Darker Skin Tone
+Profile_Camera_Deep	Calibration	Camera Deep
+Profile_Camera_Faithful	Calibration	Camera Faithful
+Profile_Camera_Flat	Calibration	Camera Flat
+Profile_Camera_Landscape	Calibration	Camera Landscape
+Profile_Camera_Light	Calibration	Camera Light
+Profile_Camera_Lighter_Skin_Tone	Calibration	Camera Lighter Skin Tone
+Profile_Camera_Monochrome	Calibration	Camera Monochrome
+Profile_Camera_Monotone	Calibration	Camera Monotone
+Profile_Camera_Muted	Calibration	Camera Muted
+Profile_Camera_Natural	Calibration	Camera Natural
+Profile_Camera_Neutral	Calibration	Camera Neutral
+Profile_Camera_Portrait	Calibration	Camera Portrait
+Profile_Camera_Positive_Film	Calibration	Camera Positive Film
+Profile_Camera_Standard	Calibration	Camera Standard
+Profile_Camera_Vivid	Calibration	Camera Vivid
+Profile_Camera_Vivid_Blue	Calibration	Camera Vivid Blue
+Profile_Camera_Vivid_Green	Calibration	Camera Vivid Green
+Profile_Camera_Vivid_Red	Calibration	Camera Vivid Red
+ShadowTint	Calibration	Shadow Tint Calibration
+RedHue	Calibration	Red Hue Calibration
+RedSaturation	Calibration	Red Saturation Calibration
+GreenHue	Calibration	Green Hue Calibration
+GreenSaturation	Calibration	Green Saturation Calibration
+BlueHue	Calibration	Blue Hue Calibration
+BlueSaturation	Calibration	Blue Saturation Calibration
+ResetShadowTint	Calibration	Reset Shadow Tint Calibration
+ResetRedHue	Calibration	Reset Red Hue Calibration
+ResetRedSaturation	Calibration	Reset Red Saturation Calibration
+ResetGreenHue	Calibration	Reset Green Hue Calibration
+ResetGreenSaturation	Calibration	Reset Green Saturation Calibration
+ResetBlueHue	Calibration	Reset Blue Hue Calibration
+ResetBlueSaturation	Calibration	Reset Blue Saturation Calibration
+Preset_1	Develop Presets	Develop Preset 1
+Preset_2	Develop Presets	Develop Preset 2
+Preset_3	Develop Presets	Develop Preset 3
+Preset_4	Develop Presets	Develop Preset 4
+Preset_5	Develop Presets	Develop Preset 5
+Preset_6	Develop Presets	Develop Preset 6
+Preset_7	Develop Presets	Develop Preset 7
+Preset_8	Develop Presets	Develop Preset 8
+Preset_9	Develop Presets	Develop Preset 9
+Preset_10	Develop Presets	Develop Preset 10
+Preset_11	Develop Presets	Develop Preset 11
+Preset_12	Develop Presets	Develop Preset 12
+Preset_13	Develop Presets	Develop Preset 13
+Preset_14	Develop Presets	Develop Preset 14
+Preset_15	Develop Presets	Develop Preset 15
+Preset_16	Develop Presets	Develop Preset 16
+Preset_17	Develop Presets	Develop Preset 17
+Preset_18	Develop Presets	Develop Preset 18
+Preset_19	Develop Presets	Develop Preset 19
+Preset_20	Develop Presets	Develop Preset 20
+Preset_21	Develop Presets	Develop Preset 21
+Preset_22	Develop Presets	Develop Preset 22
+Preset_23	Develop Presets	Develop Preset 23
+Preset_24	Develop Presets	Develop Preset 24
+Preset_25	Develop Presets	Develop Preset 25
+Preset_26	Develop Presets	Develop Preset 26
+Preset_27	Develop Presets	Develop Preset 27
+Preset_28	Develop Presets	Develop Preset 28
+Preset_29	Develop Presets	Develop Preset 29
+Preset_30	Develop Presets	Develop Preset 30
+Preset_31	Develop Presets	Develop Preset 31
+Preset_32	Develop Presets	Develop Preset 32
+Preset_33	Develop Presets	Develop Preset 33
+Preset_34	Develop Presets	Develop Preset 34
+Preset_35	Develop Presets	Develop Preset 35
+Preset_36	Develop Presets	Develop Preset 36
+Preset_37	Develop Presets	Develop Preset 37
+Preset_38	Develop Presets	Develop Preset 38
+Preset_39	Develop Presets	Develop Preset 39
+Preset_40	Develop Presets	Develop Preset 40
+GraduatedFilter	Local Adjustments	Show Graduated Filters
+RadialFilter	Local Adjustments	Show Radial Filters
+RedEye	Local Adjustments	Show Red-Eye Correction
+SpotRemoval	Local Adjustments	Show Spot Removal
+AdjustmentBrush	Local Adjustments	Show Brush Adjustments
+local_Temperature	Local Adjustments	Local Adjustments Temp. (PV2012)
+local_Tint	Local Adjustments	Local Adjustments Tint (PV2012)
+local_Exposure	Local Adjustments	Local Adjustments Exposure (PV2010 and PV2012)
+local_Contrast	Local Adjustments	Local Adjustments Contrast (PV2010 and PV2012)
+local_Highlights	Local Adjustments	Local Adjustments Highlights (PV2012)
+local_Shadows	Local Adjustments	Local Adjustments Shadows (PV2012)
+local_Whites2012	Local Adjustments	Local Adjustments Whites (PV2012)
+local_Blacks2012	Local Adjustments	Local Adjustments Blacks (PV2012)
+local_Clarity	Local Adjustments	Local Adjustments Clarity (PV2010 and PV2012)
+local_Dehaze	Local Adjustments	Local Adjustments Dehaze (PV2012)
+local_Saturation	Local Adjustments	Local Adjustments Saturation (PV2010 and PV2012)
+local_Sharpness	Local Adjustments	Local Adjustments Sharpness (PV2010 and PV2012)
+local_LuminanceNoise	Local Adjustments	Local Adjustments Luminence Noise Reduction (PV2012)
+local_Moire	Local Adjustments	Local Adjustments Moire (PV2012)
+local_Defringe	Local Adjustments	Local Adjustments Defringe (PV2012)
+local_ToningLuminance	Local Adjustments	Local Toning Luminance (PV2010)
+Resetlocal_Temperature	Local Adjustments	Reset Local Adjustments Temp. (PV2012)
+Resetlocal_Tint	Local Adjustments	Reset Local Adjustments Tint (PV2012)
+Resetlocal_Exposure	Local Adjustments	Reset Local Adjustments Exposure (PV2010 and PV2012)
+Resetlocal_Contrast	Local Adjustments	Reset Local Adjustments Contrast (PV2010 and PV2012)
+Resetlocal_Highlights	Local Adjustments	Reset Local Adjustments Highlights (PV2012)
+Resetlocal_Shadows	Local Adjustments	Reset Local Adjustments Shadows (PV2012)
+Resetlocal_Whites2012	Local Adjustments	Reset Local Adjustments Whites (PV2012)
+Resetlocal_Blacks2012	Local Adjustments	Reset Local Adjustments Blacks (PV2012)
+Resetlocal_Clarity	Local Adjustments	Reset Local Adjustments Clarity (PV2010 and PV2012)
+Resetlocal_Dehaze	Local Adjustments	Reset Local Adjustments Dehaze (PV2012)
+Resetlocal_Saturation	Local Adjustments	Reset Local Adjustments Saturation (PV2010 and PV2012)
+Resetlocal_Sharpness	Local Adjustments	Reset Local Adjustments Sharpness (PV2010 and PV2012)
+Resetlocal_LuminanceNoise	Local Adjustments	Reset Local Adjustments Luminence Noise Reduction (PV2012)
+Resetlocal_Moire	Local Adjustments	Reset Local Adjustments Moire (PV2012)
+Resetlocal_Defringe	Local Adjustments	Reset Local Adjustments Defringe (PV2012)
+Resetlocal_ToningLuminance	Local Adjustments	Reset Local Toning Luminance (PV2010)
+EnableCircularGradientBasedCorrections	Local Adjustments	Enable Radial Filter
+EnableGradientBasedCorrections	Local Adjustments	Enable Graduated Filter
+EnablePaintBasedCorrections	Local Adjustments	Enable Brush Adjustments
+EnableRedEye	Local Adjustments	Enable Red-Eye
+EnableRetouch	Local Adjustments	Enable Spot Removal
+ResetCircGrad	Local Adjustments	Reset Radial Filters
+ResetGradient	Local Adjustments	Reset Graduated Filters
+ResetBrushing	Local Adjustments	Reset Brush Corrections
+ResetRedeye	Local Adjustments	Reset Red-Eye
+ResetSpotRem	Local Adjustments	Reset Spot Removal
+straightenAngle	Crop	Straighten Angle
+CropAngle	Crop	Crop Angle
+CropBottom	Crop	Crop - Bottom
+CropLeft	Crop	Crop - Left
+CropRight	Crop	Crop - Right
+CropTop	Crop	Crop - Top
+ResetCrop	Crop	Reset Crop
+ResetstraightenAngle	Crop	Reset Straighten Angle
+CropOverlay	Crop	Show Crop
+Loupe	Select Tools, Modules and Panels	Show Loupe
+SwToMmap	Select Tools, Modules and Panels	Show Map
+SwToMbook	Select Tools, Modules and Panels	Show Book
+SwToMslideshow	Select Tools, Modules and Panels	Show Slideshow
+SwToMprint	Select Tools, Modules and Panels	Show Print
+SwToMweb	Select Tools, Modules and Panels	Show Web
+ShoScndVwloupe	Secondary Display	Secondary Display Loupe
+ShoScndVwlive_loupe	Secondary Display	Secondary Display Live Loupe
+ShoScndVwlocked_loupe	Secondary Display	Secondary Display Locked Loupe
+ShoScndVwgrid	Secondary Display	Secondary Display Grid
+ShoScndVwcompare	Secondary Display	Secondary Display Compare
+ShoScndVwsurvey	Secondary Display	Secondary Display Survey
+ShoScndVwslideshow	Secondary Display	Secondary Display Slideshow
+ToggleScreenTwo	Secondary Display	Secondary Display Show
+profile1	Profiles	Profile: 1
+profile2	Profiles	Profile: 2
+profile3	Profiles	Profile: 3
+profile4	Profiles	Profile: 4
+profile5	Profiles	Profile: 5
+profile6	Profiles	Profile: 6
+profile7	Profiles	Profile: 7
+profile8	Profiles	Profile: 8
+profile9	Profiles	Profile: 9
+profile10	Profiles	Profile: 10
+FullRefresh	Profiles	Manual Update

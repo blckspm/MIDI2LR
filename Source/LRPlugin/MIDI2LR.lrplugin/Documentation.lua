@@ -25,6 +25,8 @@ local Database     = require 'Database'
 local LrPathUtils  = import 'LrPathUtils'       
 local datafile     = LrPathUtils.child(_PLUGIN.path, 'Documentation.txt')
 local file         = io.open(datafile,'w')
+local appdatafile  = LrPathUtils.child(_PLUGIN.path, 'AppStrings.txt')
+local appfile      = io.open(appdatafile,'w')
 local menulocation = ""
 local menus_ = 'menus_({ '
 local menu_entries_ = 'menu_entries_({ '
@@ -77,6 +79,7 @@ for _,v in ipairs(Database.DataBase) do
       file:write("/* "..menulocation.." */\n")
     end
     file:write('"'..v[1]..'",\n')
+    appfile:write(v[1]..'\t'..v[9]..'\t'..v[8]..'\n')
   end
 end
 file:write("};")
@@ -104,5 +107,6 @@ end
 
 file:write("\n\nRunning Tests\n\n",Database.RunTests(),"\nTests Completed")
 file:close()
+appfile:close()
 
 
