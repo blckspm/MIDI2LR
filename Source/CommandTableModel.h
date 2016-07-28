@@ -65,6 +65,7 @@ private:
   std::pair<int, bool> prior_sort{2,true};
   std::shared_ptr<CommandMap> command_map_{nullptr};
   std::vector<MIDI_Message_ID> commands_;
+  LRCommandList* command_list_;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CommandTableModel)

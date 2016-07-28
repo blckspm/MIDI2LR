@@ -22,17 +22,13 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "CommandMap.h"
 #include "LRCommands.h"
 
-CommandMap::CommandMap() noexcept {}
-
 void CommandMap::addCommandforMessage(unsigned int command, const MIDI_Message_ID& message) {
     // adds a message to the message:command map, and its associated command to the
     // command:message map
-  if (command < LRCommandList::LRStringList.size()) {
-    message_map_[message] = LRCommandList::LRStringList[command];
-    command_string_map_.insert({LRCommandList::LRStringList[command], message});
+  if (command < command_list_->getNumberOfCommands()) {
+    message_map_[message] = command_list_->getCommandByIndex(command);
+    command_string_map_.insert({command_list_->getCommandByIndex(command), message});
   }
-  else
-    message_map_[message] = LRCommandList::NextPrevProfile[command - LRCommandList::LRStringList.size()];
 }
 
 std::vector<const MIDI_Message_ID*> CommandMap::getMessagesForCommand(const std::string& command) const {

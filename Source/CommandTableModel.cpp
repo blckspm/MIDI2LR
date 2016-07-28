@@ -27,6 +27,7 @@ CommandTableModel::CommandTableModel() noexcept {}
 void CommandTableModel::Init(std::shared_ptr<CommandMap>& map_command) noexcept {
     //copy the pointer
   command_map_ = map_command;
+  command_list_ = command_map_->AccessCommandList();
 }
 
 /**
@@ -127,7 +128,7 @@ juce::Component* CommandTableModel::refreshComponentForCell(int row_number,
 
     if (command_map_) {
         // add 1 because 0 is reserved for no selection
-      command_select->setSelectedItem(LRCommandList::getIndexOfCommand(command_map_->
+      command_select->setSelectedItem(command_list_->getIndexOfCommand(command_map_->
         getCommandforMessage(commands_[row_number])) + 1);
     }
 
@@ -217,7 +218,7 @@ int CommandTableModel::getRowForMessage(int midi_channel, int midi_data, bool is
 void CommandTableModel::Sort() {
   // use LRCommandList::getIndexOfCommand(string); to sort by command
   // sort the command map
-  const auto msg_idx = [this](MIDI_Message_ID a) {return LRCommandList::getIndexOfCommand
+  const auto msg_idx = [this](MIDI_Message_ID a) {return command_list_->getIndexOfCommand
   (command_map_->getCommandforMessage(a)); };
 
   if (current_sort.first == 1)

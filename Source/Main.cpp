@@ -34,6 +34,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include "CommandMap.h"
 #include "LR_IPC_IN.h"
 #include "LR_IPC_OUT.h"
+#include "LRCommands.h"
 #include "MainComponent.h"
 #include "MainWindow.h"
 #include "MIDISender.h"
@@ -45,7 +46,7 @@ const juce::String ShutDownString{"--LRSHUTDOWN"};
 class MIDI2LRApplication final: public juce::JUCEApplication {
 public:
   MIDI2LRApplication() {
-    command_map_ = std::make_shared<CommandMap>();
+    command_map_ = std::make_shared<CommandMap>(&commands_);
     profile_manager_ = std::make_shared<ProfileManager>();
     settings_manager_ = std::make_shared<SettingsManager>();
     midi_processor_ = std::make_shared<MIDIProcessor>();
@@ -179,6 +180,7 @@ private:
   std::shared_ptr<ProfileManager> profile_manager_;
   std::shared_ptr<SettingsManager> settings_manager_;
   std::unique_ptr<MainWindow> main_window_;
+  LRCommandList commands_;
   VersionChecker version_checker_;
 };
 

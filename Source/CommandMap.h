@@ -28,6 +28,7 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <unordered_map>
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "LRCommands.h"
 
 struct MIDI_Message_ID {
   bool isCC;
@@ -77,7 +78,7 @@ namespace std {
 
 class CommandMap {
 public:
-  CommandMap() noexcept;
+  CommandMap(LRCommandList* commands_) noexcept : command_list_(commands_)  {};
   virtual ~CommandMap() {}
 
 // adds an entry to the message:command map, and a corresponding entry to the
@@ -111,8 +112,10 @@ public:
   // saves the message:command map as an XML file
   void toXMLDocument(juce::File& file) const;
 
-private:
+  LRCommandList* AccessCommandList() const noexcept;
 
+private:
+  LRCommandList* command_list_;
   std::unordered_map<MIDI_Message_ID, std::string> message_map_;
   std::multimap<std::string, MIDI_Message_ID> command_string_map_;
 };
@@ -144,5 +147,9 @@ inline bool CommandMap::messageExistsInMap(const MIDI_Message_ID& message) const
 
 inline bool CommandMap::commandHasAssociatedMessage(const std::string& command) const {
   return command_string_map_.find(command) != command_string_map_.end();
+}
+
+inline LRCommandList* CommandMap::AccessCommandList() const noexcept {
+  return command_list_;
 }
 #endif  // COMMANDMAP_H_INCLUDED

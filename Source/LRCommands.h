@@ -21,45 +21,47 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 */
 #ifndef LRCOMMANDS_H_INCLUDED
 #define LRCOMMANDS_H_INCLUDED
-
+#include <map>
 #include <string>
 #include <vector>
 #include "../JuceLibraryCode/JuceHeader.h"
 
 class LRCommandList {
 public:
-    // Strings that LR uses
-  static const std::vector<std::string> LRStringList;
-
-  // Sectioned and readable develop param strings
-  static const std::vector<std::string> KeyShortcuts;
-  static const std::vector<std::string> General;
-  static const std::vector<std::string> Library;
-  static const std::vector<std::string> Develop;
-  static const std::vector<std::string> BasicAdjustments;
-  static const std::vector<std::string> ToneCurve;
-  static const std::vector<std::string> Mixer;
-  static const std::vector<std::string> ResetMixer;
-  static const std::vector<std::string> SplitToning;
-  static const std::vector<std::string> Detail;
-  static const std::vector<std::string> LensCorrections;
-  static const std::vector<std::string> Effects;
-  static const std::vector<std::string> Calibration;
-  static const std::vector<std::string> DevelopPresets;
-  static const std::vector<std::string> LocalAdjustments;
-  static const std::vector<std::string> Crop;
-  static const std::vector<std::string> ToolModulePanel;
-  static const std::vector<std::string> SecondaryDisplay;
-  static const std::vector<std::string> ProgramProfiles;
-
-  // MIDI2LR commands
-  static const std::vector<std::string> NextPrevProfile;
-
-  // Map of command strings to indices
-  static int getIndexOfCommand(const std::string& command);
-
+  const std::string& getCommandByIndex(size_t idx);
+  size_t getIndexOfCommand(const std::string& command);
+  size_t getNumberOfCommands();
+  std::vector<std::string> GetHeadings() const;
+  std::vector<std::vector<std::string>> GetMenuStructure() const;
+  LRCommandList();
 private:
-  LRCommandList() noexcept;
+  std::vector<std::string> headings;
+  std::vector<std::vector<std::string>> menu_structure;
+  std::map<std::string, size_t> menu_order;
+  std::vector<std::string> command_by_number;
+  std::map<std::string, std::string> cmd_to_name;
+  std::map<std::string, std::string> name_to_cmd;
+  void ReadInStrings();
 };
+
+inline  std::vector<std::string> LRCommandList::GetHeadings() const {
+  return headings;
+}
+
+inline std::vector<std::vector<std::string>> LRCommandList::GetMenuStructure() const {
+  return menu_structure;
+}
+
+inline size_t LRCommandList::getIndexOfCommand(const std::string& command) {
+  return menu_order[command];
+}
+
+inline const std::string& LRCommandList::getCommandByIndex(size_t idx) {
+  return command_by_number[idx];
+}
+
+inline size_t LRCommandList::getNumberOfCommands() {
+  return command_by_number.size();
+}
 
 #endif  // LRCOMMANDS_H_INCLUDED

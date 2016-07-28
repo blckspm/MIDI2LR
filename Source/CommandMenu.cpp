@@ -25,28 +25,14 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 
 CommandMenu::CommandMenu(const MIDI_Message_ID& message):
   juce::TextButton{"Unmapped"},
-  message_{message},
-
-  menus_({"Keyboard Shortcuts for User", "General", "Library", "Develop",
-  "Basic", "Tone Curve", "HSL / Color / B&W", "Reset HSL / Color / B&W",
-  "Split Toning", "Detail", "Lens Corrections", "Effects", "Camera Calibration",
-  "Develop Presets", "Local Adjustments", "Crop", "Go to Tool, Module, or Panel",
-  "Secondary Display", "Profiles", "Next/Prev Profile"}),
-
-  menu_entries_({LRCommandList::KeyShortcuts, LRCommandList::General,
-  LRCommandList::Library, LRCommandList::Develop,
-  LRCommandList::BasicAdjustments, LRCommandList::ToneCurve,
-  LRCommandList::Mixer, LRCommandList::ResetMixer, LRCommandList::SplitToning,
-  LRCommandList::Detail, LRCommandList::LensCorrections, LRCommandList::Effects,
-  LRCommandList::Calibration, LRCommandList::DevelopPresets,
-  LRCommandList::LocalAdjustments, LRCommandList::Crop,
-  LRCommandList::ToolModulePanel, LRCommandList::SecondaryDisplay,
-  LRCommandList::ProgramProfiles, LRCommandList::NextPrevProfile})
-{}
+  message_{message}{}
 
 void CommandMenu::Init(std::shared_ptr<CommandMap>& mapCommand) {
     //copy the pointer
   command_map_ = mapCommand;
+  command_list_ = command_map_->AccessCommandList();
+  headings_ = command_list_->GetHeadings();
+  menu_structure_ = command_list_->GetMenuStructure();
   juce::Button::addListener(this);
 }
 
@@ -56,10 +42,9 @@ void CommandMenu::setMsg(const MIDI_Message_ID& message) noexcept {
 
 void CommandMenu::setSelectedItem(unsigned int index) {
   selected_item_ = index;
-  if (index - 1 < LRCommandList::LRStringList.size())
-    setButtonText(LRCommandList::LRStringList[index - 1]);
-  else
-    setButtonText(LRCommandList::NextPrevProfile[index - 1 - LRCommandList::LRStringList.size()]);
+
+  setButtonText(command_list_->getCommandByIndex(index - 1));
+
 }
 
 void CommandMenu::buttonClicked(juce::Button* /*button*/) {
@@ -70,13 +55,13 @@ void CommandMenu::buttonClicked(juce::Button* /*button*/) {
   index++;
 
   // add each submenu
-  for (size_t menu_index = 0; menu_index < menus_.size(); menu_index++) {
+  for (size_t menu_index = 0; menu_index < headings_.size(); menu_index++) {
     juce::PopupMenu subMenu;
-    for (const auto& command : menu_entries_[menu_index]) {
+    for (const auto& command : menu_structure_[menu_index]) {
       auto already_mapped = false;
-      if ((index - 1 < LRCommandList::LRStringList.size()) && (command_map_)) {
+      if ((index - 1 < command_list_->getNumberOfCommands()) && (command_map_)) {
         already_mapped =
-          command_map_->commandHasAssociatedMessage(LRCommandList::LRStringList[index - 1]);
+          command_map_->commandHasAssociatedMessage(command_list_->getCommandByIndex(index - 1));
       }
 
       // add each submenu entry, ticking the previously selected entry and
@@ -92,7 +77,7 @@ void CommandMenu::buttonClicked(juce::Button* /*button*/) {
     }
     // set whether or not the submenu is ticked (true if one of the submenu's
     // entries is selected)
-    main_menu.addSubMenu(menus_[menu_index], subMenu, true, nullptr,
+    main_menu.addSubMenu(headings_[menu_index], subMenu, true, nullptr,
       selected_item_ < index && !submenu_tick_set);
     submenu_tick_set |= (selected_item_ < index && !submenu_tick_set);
   }
@@ -104,10 +89,9 @@ void CommandMenu::buttonClicked(juce::Button* /*button*/) {
     if (selected_item_ < std::numeric_limits<unsigned int>::max())
       command_map_->removeMessage(message_);
 
-    if (result - 1 < LRCommandList::LRStringList.size())
-      setButtonText(LRCommandList::LRStringList[result - 1]);
-    else
-      setButtonText(LRCommandList::NextPrevProfile[result - 1 - LRCommandList::LRStringList.size()]);
+
+    setButtonText(command_list_->getCommandByIndex(result - 1));
+
 
     selected_item_ = result;
 

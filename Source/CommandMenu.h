@@ -42,9 +42,9 @@ public:
 private:
   // ButtonListener interface
   virtual void buttonClicked(juce::Button* button) override;
-
-  const std::vector<juce::String> menus_;
-  const std::vector<std::vector<std::string>> menu_entries_;
+  LRCommandList* command_list_;
+  std::vector<std::string> headings_;
+  std::vector<std::vector<std::string>> menu_structure_;
   MIDI_Message_ID message_;
   size_t selected_item_{std::numeric_limits<size_t>::max()};
   std::shared_ptr<CommandMap> command_map_{nullptr};
