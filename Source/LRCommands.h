@@ -28,9 +28,9 @@ MIDI2LR.  If not, see <http://www.gnu.org/licenses/>.
 
 class LRCommandList {
 public:
-  const std::string& getCommandByIndex(size_t idx);
-  size_t getIndexOfCommand(const std::string& command);
-  size_t getNumberOfCommands();
+  const std::string& getCommandByIndex(size_t idx) const;
+  size_t getIndexOfCommand(const std::string& command) const;
+  size_t getNumberOfCommands() const noexcept;
   std::vector<std::string> GetHeadings() const;
   std::vector<std::vector<std::string>> GetMenuStructure() const;
   LRCommandList();
@@ -52,15 +52,15 @@ inline std::vector<std::vector<std::string>> LRCommandList::GetMenuStructure() c
   return menu_structure;
 }
 
-inline size_t LRCommandList::getIndexOfCommand(const std::string& command) {
-  return menu_order[command];
+inline size_t LRCommandList::getIndexOfCommand(const std::string& command) const {
+  return menu_order.at(command);
 }
 
-inline const std::string& LRCommandList::getCommandByIndex(size_t idx) {
+inline const std::string& LRCommandList::getCommandByIndex(size_t idx) const {
   return command_by_number[idx];
 }
 
-inline size_t LRCommandList::getNumberOfCommands() {
+inline size_t LRCommandList::getNumberOfCommands() const noexcept {
   return command_by_number.size();
 }
 
