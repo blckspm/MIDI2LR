@@ -35,7 +35,7 @@ void LRCommandList::ReadInStrings() {
   for (std::string line; getline(input, line);) {
     const auto t1 = line.find('\t');
     const auto t2 = line.rfind('\t');
-    const auto string0 = line.substr(0, t1 - 1);
+    const auto string0 = line.substr(0, t1);
     auto string1 = line.substr(t1 + 1, t2 - t1 - 1);
     auto string2 = line.substr(t2 + 1);
     cmd_to_name[string0] = string2;
@@ -50,7 +50,7 @@ void LRCommandList::ReadInStrings() {
     }
     if (!inserted) {
       headings.emplace_back(std::move(string1));
-      menu_structure.emplace_back(std::vector<std::string>{string2});
+      menu_structure.emplace_back(std::vector<std::string>{std::move(string2)});
     }
   }
   size_t ordernum = 0;
